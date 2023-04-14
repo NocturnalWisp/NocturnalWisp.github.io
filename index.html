@@ -2,7 +2,6 @@
 <html lang="en">
 
 <head>
-
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta name="description" content="Portfolio for Thomas Helm">
@@ -21,10 +20,28 @@
 
   <link rel="icon" href="img/ProfileImage.JPG">
 
+  <style>
+    .bg-tertiary {
+      background-color: #57b1b1;
+    }
+  </style>
+
   <script>
     function gotoSite(site)
     {
       window.open(site);
+    }
+
+    var yearDifMs = Date.now() - new Date(2013, 1, 1);
+    var yearDate = new Date(yearDifMs);
+    var years = Math.abs(yearDate.getUTCFullYear() - 1970);
+
+    var currentYear = Math.abs(new Date().getFullYear());
+
+    window.onload = function()
+    {
+      document.getElementById("years").innerHTML=years;
+      document.getElementById("currentYear").innerHTML=currentYear
     }
   </script>
 
@@ -92,20 +109,74 @@
   <!-- Portfolio Section -->
   <section class="page-section portfolio" id="portfolio">
     <div class="container">
-      <!-- Portfolio Section Heading -->
-      <h2 class="page-section-heading text-center text-uppercase text-secondary mb-0">Tools / Software</h2>
-
-      <!-- Icon Divider -->
-      <div class="divider-custom">
-        <div class="divider-custom-line"></div>
-        <div class="divider-custom-icon">
-          <i class="fas fa-times"></i>
-        </div>
-        <div class="divider-custom-line"></div>
-      </div>
-
       <!-- Portfolio Grid Items -->
       <div class="row justify-content-center">
+        <!-- Portfolio Section Heading -->
+        <h2 class="page-section-heading text-center text-uppercase text-secondary mb-0">Work</h2>
+
+        <!-- Icon Divider -->
+        <div class="divider-custom">
+          <div class="divider-custom-line"></div>
+          <div class="divider-custom-icon">
+            <i class="fas fa-times"></i>
+          </div>
+          <div class="divider-custom-line"></div>
+        </div>
+
+        <!-- NAIT -->
+        <div class="col-md-6 col-lg-4">
+          <div class="portfolio-item mx-auto" data-toggle="modal" data-target="#NAIT_Modal">
+            <div class="portfolio-item-caption d-flex align-items-center justify-content-center h-100 w-100">
+              <div class="portfolio-item-caption-content text-center text-white">
+                <i class="fas fa-plus fa-3x"></i>
+              </div>
+            </div>
+            <img class="img-fluid-fix" src="img/portfolio/Logos/NAIT.jpg" alt="NAIT Logo">
+          </div>
+        </div>
+
+        <!-- Epic Games -->
+        <div class="col-md-6 col-lg-4">
+          <div class="portfolio-item mx-auto" data-toggle="modal" data-target="#EpicGames_Modal">
+            <div class="portfolio-item-caption d-flex align-items-center justify-content-center h-100 w-100">
+              <div class="portfolio-item-caption-content text-center text-white">
+                <i class="fas fa-plus fa-3x"></i>
+              </div>
+            </div>
+            <img class="img-fluid-fix" src="img/portfolio/Logos/EpicGames.png" alt="Epic Games Logo">
+          </div>
+        </div>
+
+        <!-- Beach Day Studios -->
+        <div class="col-md-6 col-lg-4">
+          <div class="portfolio-item mx-auto" data-toggle="modal" data-target="#BeachDayStudios_Modal">
+            <div class="portfolio-item-caption d-flex align-items-center justify-content-center h-100 w-100">
+              <div class="portfolio-item-caption-content text-center text-white">
+                <i class="fas fa-plus fa-3x"></i>
+              </div>
+            </div>
+            <img class="img-fluid-fix" src="img/portfolio/Logos/BeachDayStudios.png" alt="Beach Day Studios Logo">
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+  <section class="page-section portfolio bg-tertiary" id="portfolio">
+    <div class="container">
+      <!-- Portfolio Grid Items -->
+      <div class="row justify-content-center">
+        <!-- Portfolio Section Heading -->
+        <h2 class="page-section-heading text-center text-uppercase text-white mb-0">Tools</h2>
+
+        <!-- Icon Divider -->
+        <div class="divider-custom">
+          <div class="divider-custom-line" style="background-color: white;"></div>
+          <div class="divider-custom-icon">
+            <i class="fas fa-times" style="color: white;"></i>
+          </div>
+          <div class="divider-custom-line" style="background-color: white;"></div>
+        </div>
 
         <!-- Floating Inspector -->
         <div class="col-md-6 col-lg-4">
@@ -117,6 +188,36 @@
             </div>
             <img class="img-fluid-fix" src="img/portfolio/FloatingInspector/FloatingInspector_Large.png" alt="Floating Inspector Logo">
           </div>
+        </div>
+
+        <!-- Scriptable Object Organizer -->
+        <div class="col-md-6 col-lg-4">
+          <div class="portfolio-item mx-auto" data-toggle="modal" data-target="#SOO_Modal">
+            <div class="portfolio-item-caption d-flex align-items-center justify-content-center h-100 w-100">
+              <div class="portfolio-item-caption-content text-center text-white">
+                <i class="fas fa-plus fa-3x"></i>
+              </div>
+            </div>
+            <img class="img-fluid-fix" src="img/portfolio/SOO_Large.png" alt="Scriptable Object Organizer Logo">
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+  <section class="page-section portfolio" id="portfolio">
+    <div class="container">
+      <div class="row justify-content-center">
+        <!-- Engine Section Heading -->
+        <h2 class="page-section-heading text-center text-uppercase text-secondary mb-0">Game Engines</h2>
+
+        <!-- Icon Divider -->
+        <div class="divider-custom">
+          <div class="divider-custom-line"></div>
+          <div class="divider-custom-icon">
+            <i class="fas fa-times"></i>
+          </div>
+          <div class="divider-custom-line"></div>
         </div>
 
         <!-- Drython -->
@@ -132,44 +233,32 @@
           </div>
         </div>
 
-      </div>
-      <div class="row justify-content-center">
-        <!-- Scriptable Object Organizer -->
-        <div class="col-md-6 col-lg-4">
-          <div class="portfolio-item mx-auto" data-toggle="modal" data-target="#SOO_Modal">
-            <div class="portfolio-item-caption d-flex align-items-center justify-content-center h-100 w-100">
-              <div class="portfolio-item-caption-content text-center text-white">
-                <i class="fas fa-plus fa-3x"></i>
+          <!-- Tynted Engine -->
+          <div class="col-md-6 col-lg-4">
+            <div class="portfolio-item mx-auto" data-toggle="modal" data-target="#TyntedEngine_Modal">
+              <div class="portfolio-item-caption d-flex align-items-center justify-content-center h-100 w-100">
+                <div class="portfolio-item-caption-content text-center text-white">
+                  <i class="fas fa-plus fa-3x"></i>
+                </div>
               </div>
+              <img class="img-fluid-fix" src="img/portfolio/TyntedLogo_Large.png" alt="Tynted Engine Logo">
             </div>
-            <img class="img-fluid-fix" src="img/portfolio/SOO_Large.png" alt="Scriptable Object Organizer Logo">
           </div>
-        </div>
-
-        <!-- Tynted Engine -->
-        <div class="col-md-6 col-lg-4">
-          <div class="portfolio-item mx-auto" data-toggle="modal" data-target="#TyntedEngine_Modal">
-            <div class="portfolio-item-caption d-flex align-items-center justify-content-center h-100 w-100">
-              <div class="portfolio-item-caption-content text-center text-white">
-                <i class="fas fa-plus fa-3x"></i>
-              </div>
-            </div>
-            <img class="img-fluid-fix" src="img/portfolio/TyntedLogo_Large.png" alt="Tynted Engine Logo">
-          </div>
-        </div>
       </div>
-
+    </div>
+  </section>
+  <section class="page-section portfolio bg-tertiary" id="portfolio">
     <div class="container">
       <div class="row justify-content-center">
-        <h2 class="page-section-heading text-center text-uppercase text-secondary mb-0">Games</h2>
+        <h2 class="page-section-heading text-center text-uppercase text-white mb-0">Games</h2>
 
         <!-- Icon Divider -->
         <div class="divider-custom">
-          <div class="divider-custom-line"></div>
+          <div class="divider-custom-line" style="background-color: white;"></div>
           <div class="divider-custom-icon">
-            <i class="fas fa-times"></i>
+            <i class="fas fa-times" style="color: white;"></i>
           </div>
-          <div class="divider-custom-line"></div>
+          <div class="divider-custom-line" style="background-color: white;"></div>
         </div>
 
         <!-- Murder Bunnies -->
@@ -195,34 +284,24 @@
             <img class="img-fluid-fix" src="img/portfolio/AIDungeon_Large.png" alt="AI Dungeon Icon">
           </div>
         </div>
-
-        <!-- Deep Boom -->
-        <div class="col-md-6 col-lg-4">
-          <div class="portfolio-item mx-auto" data-toggle="modal" data-target="#DeepBoom_Modal">
-            <div class="portfolio-item-caption d-flex align-items-center justify-content-center h-100 w-100">
-              <div class="portfolio-item-caption-content text-center text-white">
-                <i class="fas fa-plus fa-3x"></i>
-              </div>
-            </div>
-            <img class="img-fluid-fix" src="img/portfolio/DeepBoom.png" alt="Deep Boom Icon">
-          </div>
-        </div>
-
       </div>
-      
-      <!-- Portfolio Section Heading -->
-      <h2 class="page-section-heading text-center text-uppercase text-secondary mb-0">Other</h2>
-
-      <!-- Icon Divider -->
-      <div class="divider-custom">
-        <div class="divider-custom-line"></div>
-        <div class="divider-custom-icon">
-          <i class="fas fa-times"></i>
-        </div>
-        <div class="divider-custom-line"></div>
-      </div>
-
+    </div>
+  </section>
+  <section class="page-section portfolio" id="portfolio">
+    <div class="container">
       <div class="row justify-content-center">
+        <!-- Other Section Heading -->
+        <h2 class="page-section-heading text-center text-uppercase text-secondary mb-0">Other</h2>
+
+        <!-- Icon Divider -->
+        <div class="divider-custom">
+          <div class="divider-custom-line"></div>
+          <div class="divider-custom-icon">
+            <i class="fas fa-times"></i>
+          </div>
+          <div class="divider-custom-line"></div>
+        </div>
+
         <div class="col-md-6 col-lg-4">
           <a class="portfolio-item mx-auto" href="https://nocturnal-wisp.itch.io/" target="_blank">
             <div class="portfolio-item-caption d-flex align-items-center justify-content-center h-100 w-100">
@@ -258,26 +337,23 @@
       <div class="row">
         <div class="col-lg-4 ml-auto">
           <p class="lead">
-            Thomas (T.J.) Helm has been developing projects for over 9 years. 
+            Thomas (T.J.) Helm has been developing projects for <span id="years"></span> years. 
             The examples listed above are a collection of the best representation of his skills.
             Most of the projects on itch.io were created during week or month long game jams.
           </p>
         </div>
         <div class="col-lg-4 mr-auto">
           <p class="lead">
-            The resume below elaborates on his past experience, skills, and accomplishments.
-            You can also check out his various social media accounts. Links are in the footer of this page including email contact.
+            You can also check out his various social media accounts. Links are in the footer of this page.
+            Feel free to message at anytime; I love to chat!
           </p>
         </div>
       </div>
 
-      <!-- About Section Button -->
-      <div class="text-center mt-4">
-        <a class="btn btn-xl btn-outline-light" href="files/Resume.docx" target="_blank">
-          <i class="fas fa-download mr-2"></i>
-          Resume
-        </a>
+      <div class="text-center font-weight-bold" style="font-size: 150%">
+        <a href="mailto:helmthomas2000@gmail.com" class="text-decoration-none">helmthomas2000@gmail.com</a>
       </div>
+
 
     </div>
   </section>
@@ -288,36 +364,27 @@
       <div class="row">
 
         <!-- Footer Location -->
-        <div class="col-lg-4 mb-5 mb-lg-0">
+        <div class="col-lg-6 mb-5 mb-lg-0">
           <h4 class="text-uppercase mb-4">Location</h4>
-          <p class="lead mb-0">Edmonton, AB Canada</p>
+          <p class="lead mb-0">Lethbridge, AB Canada</p>
         </div>
 
         <!-- Footer Social Icons -->
-        <div class="col-lg-4 mb-5 mb-lg-0">
+        <div class="col-lg-6 mb-5 mb-lg-0">
           <h4 class="text-uppercase mb-4">Around the Web</h4>
-          <a class="btn btn-outline-light btn-social mx-1" href="https://twitter.com/NocturnalWisp" target="_blank">
-            <i class="fab fa-fw fa-twitter"></i>
-          </a>
-          <a class="btn btn-outline-light btn-social mx-1" href="https://www.youtube.com/channel/UCavIy_iVGc1Wt1Ldp82CGTg" target="_blank">
-            <i class="fab fa-fw fa-youtube"></i>
+          <a class="btn btn-outline-light btn-social mx-1" href="mailto:helmthomas2000@gmail.com" target="_blank">
+            <i class="far fa-fw fa-envelope"></i>
           </a>
           <a class="btn btn-outline-light btn-social mx-1" href="https://www.linkedin.com/in/t-j-h-322293100/" target="_blank">
             <i class="fab fa-fw fa-linkedin-in"></i>
           </a>
-          <a class="btn btn-outline-light btn-social mx-1" href="mailto:helmthomas2000@gmail.com" target="_blank">
-            <i class="far fa-fw fa-envelope"></i>
+          <a class="btn btn-outline-light btn-social mx-1" href="https://www.youtube.com/channel/UCavIy_iVGc1Wt1Ldp82CGTg" target="_blank">
+            <i class="fab fa-fw fa-youtube"></i>
+          </a>
+          <a class="btn btn-outline-light btn-social mx-1" href="https://twitter.com/NocturnalWisp" target="_blank">
+            <i class="fab fa-fw fa-twitter"></i>
           </a>
         </div>
-
-        <!-- Footer About Text -->
-        <div class="col-lg-4">
-          <h4 class="text-uppercase mb-4">About Thomas Helm</h4>
-          <p class="lead mb-0">
-            Thomas Helm is a tools/core programmer with a specialization in game development.
-          </p>
-        </div>
-
       </div>
     </div>
   </footer>
@@ -325,7 +392,7 @@
   <!-- Copyright Section -->
   <section class="copyright py-4 text-center text-white">
     <div class="container">
-      <small>Copyright &copy; Thomas Helm 2023</small>
+      <small>&copy; Thomas Helm <span id="currentYear"></span></small>
     </div>
   </section>
 
@@ -337,6 +404,196 @@
   </div>
 
   <!-- Portfolio Modals -->
+
+  <!-- NAIT Modal -->
+  <div class="portfolio-modal modal fade" id="NAIT_Modal" tabindex="-1" role="dialog" aria-labelledby="NAIT_Modal_Label" aria-hidden="true">
+    <div class="modal-dialog modal-xl" role="document">
+      <div class="modal-content">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">
+            <i class="fas fa-times"></i>
+          </span>
+        </button>
+        <div class="modal-body text-center">
+          <div class="container">
+            <div class="row justify-content-center">
+              <div class="col-lg-8">
+                <!-- Portfolio Modal - Image -->
+                <img class="img-fluid rounded mb-5" src="img/portfolio/Logos/NAIT_Small.jpg" alt="NAIT Logo">
+                <!-- Portfolio Modal - Title -->
+                <h2 class="portfolio-modal-title text-secondary text-uppercase mb-0">NAIT</h2>
+                <!-- Icon Divider -->
+                <div class="divider-custom">
+                  <div class="divider-custom-line"></div>
+                  <div class="divider-custom-icon">
+                    <i class="fas fa-times"></i>
+                  </div>
+                  <div class="divider-custom-line"></div>
+                </div>
+
+                <!-- Portfolio Modal - Text -->
+                <p class="mb-5">
+                  During my time at NAIT I worked as a Software Developer implementing features and systems
+                  <br/>based on the client and senior developer expectations. I often took the opportunity
+                  <br/>to tackle and implement entire features independentely with peer reviewed pull requests.
+                  <ul style="text-align: left;">
+                    <strong>Tools I used:</strong>
+                    <li>Unity 3D Game Engine</li>
+                    <li>Visual Studio/VS Code</li>
+                    <li>Git version control (BitBucket)</li>
+                    <li>Jira</li>
+                    <li>Alt-unity automated tester</li>
+                    <li>JSON.net library</li>
+                    <li>Sharepoint</li>
+                  </ul>
+                  
+                  <ul style="text-align: left;">
+                    <strong>Features I worked on:</strong>
+                    <li>Saving/Loading user created project files in the JSON format.</li>
+                    <li>Integrated CI/CD with unity cloud for quicker iteration times.</li>
+                    <li>Created a tutorial system with quick iteration for the development team.</li>
+                    <li>Designed a quiz system for both instructors and students to test knowledge as the instructors sees fit.</li>
+                    <li>Documented systems and created batch files for better iteration on new aspects to the features.
+                      <br/>(A new widget type could easily be created by running the script which would populate new C# files with the appropriate data.)
+                    </li>
+                    <li>Automated documentation using Doxygen and GraphViz for new-comers to the project.</li>
+                  </ul>
+                  <br/>
+                  My time spent working at NAIT has been a great source for learning and developing my skills.
+                  <br/> I worked well with my fellow team mates using agile development and focusing on how we can make the application better.
+                </p>
+                <br/>
+                <button class="btn btn-primary" href="#" data-dismiss="modal">
+                  <i class="fas fa-times fa-fw"></i>
+                  Close Window
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Epic Games Modal -->
+  <div class="portfolio-modal modal fade" id="EpicGames_Modal" tabindex="-1" role="dialog" aria-labelledby="EpicGames_Modal_Label" aria-hidden="true">
+    <div class="modal-dialog modal-xl" role="document">
+      <div class="modal-content">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">
+            <i class="fas fa-times"></i>
+          </span>
+        </button>
+        <div class="modal-body text-center">
+          <div class="container">
+            <div class="row justify-content-center">
+              <div class="col-lg-8">
+                <!-- Portfolio Modal - Image -->
+                <img class="img-fluid rounded mb-5" src="img/portfolio/Logos/EpicGames_Small.png" alt="Epic Games Logo">
+                <!-- Portfolio Modal - Title -->
+                <h2 class="portfolio-modal-title text-secondary text-uppercase mb-0">Epic Games</h2>
+                <!-- Icon Divider -->
+                <div class="divider-custom">
+                  <div class="divider-custom-line"></div>
+                  <div class="divider-custom-icon">
+                    <i class="fas fa-times"></i>
+                  </div>
+                  <div class="divider-custom-line"></div>
+                </div>
+
+                <!-- Portfolio Modal - Text -->
+                <p class="mb-5">
+                  Epic games was my first payed job in the tech field. I worked here for 8 months
+                  <br/>as a software tester ensuring the quality of the Unreal engine and it's core systems.
+                  <ul style="text-align: left;">
+                    Tools I used:
+                    <li>Unreal Engine & Unreal Engine Build Tool (UBT)</li>
+                    <li>Visual Studio</li>
+                    <li>Perforce Version Control</li>
+                  </ul>
+                  
+                  <ul style="text-align: left;">
+                    I spent most of my time running tests relating to the following:
+                    <li>Core engine build system.</li>
+                    <li>Gameplay systems.</li>
+                    <li>Blueprint node systems.</li>
+                    <li>Integrated tools like Nanite & Lumen.</li>
+                    <li>C++ build system to ensure C++ developer quality.</li>
+                  </ul>
+
+                  I also spent some time creating a couple of batch files for aiding in tedious files transfers, for console
+                  <br/>development testing, to the directory I was working with.
+                </p>
+                <br/>
+                <button class="btn btn-primary" href="#" data-dismiss="modal">
+                  <i class="fas fa-times fa-fw"></i>
+                  Close Window
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Beach Day Studios Modal -->
+  <div class="portfolio-modal modal fade" id="BeachDayStudios_Modal" tabindex="-1" role="dialog" aria-labelledby="BeachDayStudios_Modal_Label" aria-hidden="true">
+    <div class="modal-dialog modal-xl" role="document">
+      <div class="modal-content">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">
+            <i class="fas fa-times"></i>
+          </span>
+        </button>
+        <div class="modal-body text-center">
+          <div class="container">
+            <div class="row justify-content-center">
+              <div class="col-lg-8">
+                <!-- Portfolio Modal - Image -->
+                <img class="img-fluid rounded mb-5" src="img/portfolio/Logos/BeachDayStudios_Small.png" alt="Beach Day Studios Logo">
+                <!-- Portfolio Modal - Title -->
+                <h2 class="portfolio-modal-title text-secondary text-uppercase mb-0">Beach Day Studios</h2>
+                <!-- Icon Divider -->
+                <div class="divider-custom">
+                  <div class="divider-custom-line"></div>
+                  <div class="divider-custom-icon">
+                    <i class="fas fa-times"></i>
+                  </div>
+                  <div class="divider-custom-line"></div>
+                </div>
+
+                <!-- Portfolio Modal - Text -->
+                <p class="mb-5">
+                  I interned at Beach Day Studios for 4 months during my last simester of college.
+                  <br/> It was a great opportunity to apply some of the things I learned in a working environment.
+                  <br/> The focus on the Beach Day team was hypercasual games specifically VR related.
+                  <br/><br/>
+                  One such game I worked on was the idea of a monster whos' aim was to eat all the food within
+                  <br/>a certain time. The monster had no legs and the player was forced to crawl around in the style of
+                  <br/>Gorilla Tag. I created the idea and implemented the main mechanics using the Unity VR API.
+                  <br/>Unfortunately it seems the company is no longer operating as I did leave to pursue paid work.
+                  <ul style="text-align: left;">
+                    Tools I used:
+                    <li>Unity 3D Game Engine</li>
+                    <li>Oculus SDK</li>
+                    <li>Visual Studio Code</li>
+                    <li>Git Version Control</li>
+                    <li>Unity Android Builds & Optimization</li>
+                  </ul>
+                </p>
+                <br/>
+                <button class="btn btn-primary" href="#" data-dismiss="modal">
+                  <i class="fas fa-times fa-fw"></i>
+                  Close Window
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 
   <!-- Floating Inspector Modal -->
   <div class="portfolio-modal modal fade" id="FloatingInspector_Modal" tabindex="-1" role="dialog" aria-labelledby="FloatingInspector_Modal_Label" aria-hidden="true">
@@ -365,13 +622,13 @@
                 </div>
 
                 <!-- Carousel -->
-                <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+                <div id="floatingInspectorCarousel" class="carousel slide" data-ride="carousel">
                   <ol class="carousel-indicators">
-                    <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
-                    <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
-                    <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
-                    <li data-target="#carouselExampleIndicators" data-slide-to="3"></li>
-                    <li data-target="#carouselExampleIndicators" data-slide-to="4"></li>
+                    <li data-target="#floatingInspectorCarousel" data-slide-to="0" class="active"></li>
+                    <li data-target="#floatingInspectorCarousel" data-slide-to="1"></li>
+                    <li data-target="#floatingInspectorCarousel" data-slide-to="2"></li>
+                    <li data-target="#floatingInspectorCarousel" data-slide-to="3"></li>
+                    <li data-target="#floatingInspectorCarousel" data-slide-to="4"></li>
                   </ol>
                   <div class="carousel-inner">
                     <div class="carousel-item active">
@@ -390,11 +647,11 @@
                       <img class="img-fluid rounded mb-5" src="img/portfolio/FloatingInspector/RenameComponentsToSuitYourNeeds.png" alt="Rename Components To Suit Your Needs">
                     </div>
                   </div>
-                  <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+                  <a class="carousel-control-prev" href="#floatingInspectorCarousel" role="button" data-slide="prev">
                     <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                     <span class="sr-only">Previous</span>
                   </a>
-                  <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+                  <a class="carousel-control-next" href="#floatingInspectorCarousel" role="button" data-slide="next">
                     <span class="carousel-control-next-icon" aria-hidden="true"></span>
                     <span class="sr-only">Next</span>
                   </a>
@@ -407,9 +664,9 @@
                   <br/>
                   I created the Floating Inspector tool to make working with Unity much more efficient.
                   <br/>It's as simple as selecting (or hovering) over an object in the scene/hierarchy/project windows and pressing "1".
-                  <br/>This opens a convenient small window to quickly work within and manipulate selected objects as you need.
-                  <ul>
-                    Other Features
+                  This opens a convenient small window to quickly work within and manipulate selected objects as you need.
+                  <ul style="text-align: left;">
+                    Other Features:
                     <li>Component Hover - When you need to quickly reference what components a game object has, hover over it and a small window will reveal it.</li>
                     <li>Floating Hierarchy - Useful for jumping between game object parent, siblings, and children. Especially important for UI!</li>
                   </ul> 
@@ -417,6 +674,96 @@
 
                 <button class="btn btn-primary" style="margin-bottom: 20px" 
                     onclick="gotoSite('https://assetstore.unity.com/packages/tools/utilities/floating-inspector-236873')" 
+                    href="#" data-dismiss="modal">
+                  <i class="fas fa-plus fa-fw"></i>
+                  Unity Asset Store
+                </button>
+                <br/>
+                <button class="btn btn-primary" href="#" data-dismiss="modal">
+                  <i class="fas fa-times fa-fw"></i>
+                  Close Window
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SOO Modal -->
+  <div class="portfolio-modal modal fade" id="SOO_Modal" tabindex="-1" role="dialog" aria-labelledby="SOO_Modal_Label" aria-hidden="true">
+    <div class="modal-dialog modal-xl" role="document">
+      <div class="modal-content">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">
+            <i class="fas fa-times"></i>
+          </span>
+        </button>
+        <div class="modal-body text-center">
+          <div class="container">
+            <div class="row justify-content-center">
+              <div class="col-lg-8">
+                <!-- Portfolio Modal - Image -->
+                <img class="img-fluid rounded mb-5" src="img/portfolio/SOO_Small.png" alt="Scriptable Object Organizer Logo">
+                <!-- Portfolio Modal - Title -->
+                <h2 class="portfolio-modal-title text-secondary text-uppercase mb-0">Scriptable Object Organizer</h2>
+                <!-- Icon Divider -->
+                <div class="divider-custom">
+                  <div class="divider-custom-line"></div>
+                  <div class="divider-custom-icon">
+                    <i class="fas fa-times"></i>
+                  </div>
+                  <div class="divider-custom-line"></div>
+                </div>
+                
+                <!-- Carousel -->
+                <div id="sooCarousel" class="carousel slide" data-ride="carousel">
+                  <ol class="carousel-indicators">
+                    <li data-target="#sooCarousel" data-slide-to="0" class="active"></li>
+                    <li data-target="#sooCarousel" data-slide-to="1"></li>
+                    <li data-target="#sooCarousel" data-slide-to="2"></li>
+                    <li data-target="#sooCarousel" data-slide-to="3"></li>
+                  </ol>
+                  <div class="carousel-inner">
+                    <div class="carousel-item active">
+                      <iframe width="347" height="189" src="https://www.youtube.com/embed/8oRKzAZF2TM" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    </div>
+                    <div class="carousel-item">
+                      <img class="img-fluid rounded mb-5" width="347" height="189" src="https://img.itch.zone/aW1hZ2UvMTMxNDU3Mi83NjQzNTk1LnBuZw==/original/7azz1H.png" alt="Second slide">
+                    </div>
+                    <div class="carousel-item">
+                      <img class="img-fluid rounded mb-5" src="img/portfolio/SOO/SOO2.png" alt="Third slide">
+                    </div>
+                    <div class="carousel-item">
+                      <img class="img-fluid rounded mb-5" src="img/portfolio/SOO/SOO3.png" alt="Fourth slide">
+                    </div>
+                  </div>
+                  <a class="carousel-control-prev" href="#sooCarousel" role="button" data-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="sr-only">Previous</span>
+                  </a>
+                  <a class="carousel-control-next" href="#sooCarousel" role="button" data-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="sr-only">Next</span>
+                  </a>
+                </div>
+
+                <!-- Portfolio Modal - Text -->
+                <p class="mb-5">
+                  The Scriptable Object Organizer (SOO) is a tool for both Unity programmers and Developers.
+                  It enables quick and simple access to scriptable objects without the need to dive
+                  through multiple folders.
+                  <br/><br/>
+                  SOO features its very own window where you can chose between multiple tabs.
+                  The organizer allows for managing objects through a list format using optional filters.
+                  It also allows programmers to quickly alter the backend script of a scriptable object
+                  to add small fields or even whole functions.
+                  <br/><br/>
+                  You can check out the link to the unity asset store below! 
+                </p>
+                <button class="btn btn-primary" style="margin-bottom: 20px" 
+                    onclick="gotoSite('https://assetstore.unity.com/packages/tools/utilities/scriptable-object-organizer-204626')" 
                     href="#" data-dismiss="modal">
                   <i class="fas fa-plus fa-fw"></i>
                   Unity Asset Store
@@ -494,96 +841,6 @@
     </div>
   </div>
 
-  <!-- SOO Modal -->
-  <div class="portfolio-modal modal fade" id="SOO_Modal" tabindex="-1" role="dialog" aria-labelledby="SOO_Modal_Label" aria-hidden="true">
-    <div class="modal-dialog modal-xl" role="document">
-      <div class="modal-content">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">
-            <i class="fas fa-times"></i>
-          </span>
-        </button>
-        <div class="modal-body text-center">
-          <div class="container">
-            <div class="row justify-content-center">
-              <div class="col-lg-8">
-                <!-- Portfolio Modal - Image -->
-                <img class="img-fluid rounded mb-5" src="img/portfolio/SOO_Small.png" alt="Scriptable Object Organizer Logo">
-                <!-- Portfolio Modal - Title -->
-                <h2 class="portfolio-modal-title text-secondary text-uppercase mb-0">Scriptable Object Organizer</h2>
-                <!-- Icon Divider -->
-                <div class="divider-custom">
-                  <div class="divider-custom-line"></div>
-                  <div class="divider-custom-icon">
-                    <i class="fas fa-times"></i>
-                  </div>
-                  <div class="divider-custom-line"></div>
-                </div>
-                
-                <!-- Carousel -->
-                <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
-                  <ol class="carousel-indicators">
-                    <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
-                    <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
-                    <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
-                    <li data-target="#carouselExampleIndicators" data-slide-to="3"></li>
-                  </ol>
-                  <div class="carousel-inner">
-                    <div class="carousel-item active">
-                      <iframe width="347" height="189" src="https://www.youtube.com/embed/8oRKzAZF2TM" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-                    </div>
-                    <div class="carousel-item">
-                      <img class="img-fluid rounded mb-5" src="img/portfolio/SOO/SOO1.png" alt="Second slide">
-                    </div>
-                    <div class="carousel-item">
-                      <img class="img-fluid rounded mb-5" src="img/portfolio/SOO/SOO2.png" alt="Third slide">
-                    </div>
-                    <div class="carousel-item">
-                      <img class="img-fluid rounded mb-5" src="img/portfolio/SOO/SOO3.png" alt="Fourth slide">
-                    </div>
-                  </div>
-                  <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
-                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                    <span class="sr-only">Previous</span>
-                  </a>
-                  <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
-                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                    <span class="sr-only">Next</span>
-                  </a>
-                </div>
-
-                <!-- Portfolio Modal - Text -->
-                <p class="mb-5">
-                  The Scriptable Object Organizer (SOO) is a tool for both Unity programmers and Developers.
-                  It enables quick and simple access to scriptable objects without the need to dive
-                  through multiple folders.
-                  <br/><br/>
-                  SOO features its very own window where you can chose between multiple tabs.
-                  The organizer allows for managing objects through a list format using optional filters.
-                  It also allows programmers to quickly alter the backend script of a scriptable object
-                  to add small fields or even whole functions.
-                  <br/><br/>
-                  You can check out the link to the unity asset store below! 
-                </p>
-                <button class="btn btn-primary" style="margin-bottom: 20px" 
-                    onclick="gotoSite('https://assetstore.unity.com/packages/tools/utilities/scriptable-object-organizer-204626')" 
-                    href="#" data-dismiss="modal">
-                  <i class="fas fa-plus fa-fw"></i>
-                  Unity Asset Store
-                </button>
-                <br/>
-                <button class="btn btn-primary" href="#" data-dismiss="modal">
-                  <i class="fas fa-times fa-fw"></i>
-                  Close Window
-                </button>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-
   <!-- Tynted Engine Modal -->
   <div class="portfolio-modal modal fade" id="TyntedEngine_Modal" tabindex="-1" role="dialog" aria-labelledby="TyntedEngine_Modal_Label" aria-hidden="true">
     <div class="modal-dialog modal-xl" role="document">
@@ -615,16 +872,14 @@
                   Tynted Engine is a game engine created originally to test the concept of the Entity Component
                   System pattern. To showcase this, the engine has multiple features that are important to the 
                   pattern. Tynted Engine was created in C# using the SFML C# binding.
-                  <br/><br/>
-                  Features:
                   <ul style="text-align: left" title="Features">
+                    Features:
                     <li>Entity Component System</li>
                     <li>Observer Pattern Custom Events</li>
                     <li>Scene (Level) File Loading</li>
                     <li>Coroutines</li>
                     <li>Engine Extensions</li>
                   </ul>
-                  <br/>
                   You can check out the github page for the code base, a documentation wiki, and engine releases.
                   The wiki has the API, a reference to the ECS theory, and a reference to each core part of the 
                   engine. It also has a short tutorial for creating a developer's first application in the engine.
@@ -675,12 +930,12 @@
                 </div>
                 
                 <!-- Carousel -->
-                <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+                <div id="muderBunniesCarousel" class="carousel slide" data-ride="carousel">
                   <ol class="carousel-indicators">
-                    <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
-                    <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
-                    <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
-                    <li data-target="#carouselExampleIndicators" data-slide-to="3"></li>
+                    <li data-target="#muderBunniesCarousel" data-slide-to="0" class="active"></li>
+                    <li data-target="#muderBunniesCarousel" data-slide-to="1"></li>
+                    <li data-target="#muderBunniesCarousel" data-slide-to="2"></li>
+                    <li data-target="#muderBunniesCarousel" data-slide-to="3"></li>
                   </ol>
                   <div class="carousel-inner">
                     <div class="carousel-item active">
@@ -696,11 +951,11 @@
                       <img class="img-fluid rounded mb-5" src="img/portfolio/Murder Bunnies/Egg.png" alt="Fourth slide">
                     </div>
                   </div>
-                  <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+                  <a class="carousel-control-prev" href="#muderBunniesCarousel" role="button" data-slide="prev">
                     <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                     <span class="sr-only">Previous</span>
                   </a>
-                  <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+                  <a class="carousel-control-next" href="#muderBunniesCarousel" role="button" data-slide="next">
                     <span class="carousel-control-next-icon" aria-hidden="true"></span>
                     <span class="sr-only">Next</span>
                   </a>
@@ -711,15 +966,13 @@
                   Murder Bunnies is a small game intended to showcase a more complete publishable game. The core aspects are
                   based on a 4 player system. Created in Unity C# and published to Itch.io. Much could be improved to make
                   the game more exciting for fewer players, but the mechanics are implemented. Based off the old arcade game "Joust."
-                  <br/><br/>
-                  Features:
                   <ul style="text-align: left" title="Features">
+                    Features:
                     <li>Controller Support</li>
                     <li>Couch Multiplayer</li>
                     <li>Diverse Character Movement</li>
                     <li>Exciting Gameplay</li>
                   </ul>
-                  <br/>
                   Murder Bunnies is hosted on itch.io found at the link below.
                 </p>
                 <button class="btn btn-primary" style="margin-bottom: 20px" 
@@ -779,9 +1032,8 @@
                   </b></span> 
                 </p>
                 <h4 class="text-secondary text-uppercase mb-0">Dungeon Generation</h4>
-                <br/>
                 <p class="mb-5">
-                  The dungeon generation works in 6 steps which are: 
+                  The dungeon generation works in 6 steps which are:
                   <ol style="text-align: left">
                     <li>Building the critical path</li>
                     <li>Building rooms</li> 
@@ -790,7 +1042,6 @@
                     <li>Joining rooms</li>
                     <li>Building the dungeon</li>
                   </ol>
-                  <br/>
                   Each of these steps 
                   are laid out in the AIDungeonDiagram.jpg file on the github source page.
                 </p>
