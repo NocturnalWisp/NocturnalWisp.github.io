@@ -21,8 +21,285 @@
   <link rel="icon" href="img/ProfileImage.JPG">
 
   <style>
-    .bg-tertiary {
-      background-color: #57b1b1;
+    :root {
+      --ink-900: #1d1a17;
+      --ink-700: #4d4742;
+      --paper-100: #f6f0e8;
+      --paper-200: #efe4d6;
+      --sand-400: #d2b48c;
+      --accent-500: #c77b3b;
+      --accent-700: #a15f2b;
+      --teal-500: #2b7a78;
+      --teal-700: #205d5c;
+    }
+
+    body {
+      background: radial-gradient(circle at top right, #fdf9f4 0%, var(--paper-100) 45%, var(--paper-200) 100%);
+      color: var(--ink-900);
+    }
+
+    #mainNav {
+      background: linear-gradient(120deg, var(--ink-900), #2f2924);
+    }
+
+    .masthead {
+      background: linear-gradient(140deg, #25201c 0%, #3a3027 45%, var(--teal-700) 100%);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .masthead::before,
+    .masthead::after {
+      content: "";
+      position: absolute;
+      border-radius: 50%;
+      opacity: 0.22;
+      pointer-events: none;
+    }
+
+    .masthead::before {
+      width: 460px;
+      height: 460px;
+      background: var(--accent-500);
+      top: -180px;
+      right: -130px;
+    }
+
+    .masthead::after {
+      width: 360px;
+      height: 360px;
+      background: var(--teal-500);
+      bottom: -170px;
+      left: -110px;
+    }
+
+    .masthead-avatar {
+      border-radius: 20px;
+      border: 4px solid rgba(255, 255, 255, 0.5);
+      box-shadow: 0 14px 32px rgba(0, 0, 0, 0.25);
+      z-index: 2;
+    }
+
+    .skill-section {
+      position: relative;
+      isolation: isolate;
+    }
+
+    .skill-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+      gap: 1.25rem;
+      margin-top: 2.5rem;
+    }
+
+    .skill-card {
+      background: #fff;
+      border: 1px solid #e4d5c4;
+      border-radius: 14px;
+      padding: 1.4rem 1.2rem;
+      box-shadow: 0 12px 28px rgba(45, 37, 30, 0.08);
+      transition: transform 180ms ease, box-shadow 180ms ease, border-color 180ms ease;
+      cursor: pointer;
+      text-align: center;
+    }
+
+    .skill-card:hover,
+    .skill-card:focus {
+      transform: translateY(-4px);
+      box-shadow: 0 16px 30px rgba(45, 37, 30, 0.14);
+      border-color: var(--accent-500);
+      outline: none;
+    }
+
+    .skill-card i {
+      font-size: 2.3rem;
+      color: var(--teal-500);
+      margin-bottom: 0.85rem;
+    }
+
+    .skill-card h3 {
+      font-size: 1.1rem;
+      margin-bottom: 0.4rem;
+      color: var(--ink-900);
+    }
+
+    .skill-card p {
+      margin-bottom: 0;
+      color: var(--ink-700);
+      font-size: 0.95rem;
+      line-height: 1.35;
+    }
+
+    .skill-highlight {
+      background: linear-gradient(130deg, var(--teal-700), var(--teal-500));
+    }
+
+    .pill {
+      display: inline-block;
+      border-radius: 999px;
+      padding: 0.2rem 0.6rem;
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 0.03em;
+      text-transform: uppercase;
+      background: #f3e3d2;
+      color: var(--accent-700);
+      margin-bottom: 0.8rem;
+    }
+
+    .experience-list {
+      text-align: left;
+      margin-top: 1rem;
+      padding-left: 1.25rem;
+    }
+
+    .experience-list li {
+      margin-bottom: 0.85rem;
+      color: #35312d;
+      line-height: 1.4;
+    }
+
+    .experience-list strong {
+      color: #171412;
+    }
+
+    .portfolio-modal .modal-content {
+      border-radius: 32px;
+      border: 1px solid #e3d4c3;
+      box-shadow: 0 26px 52px rgba(33, 28, 23, 0.32);
+      overflow: hidden;
+    }
+
+    .portfolio-modal .modal-dialog {
+      max-width: 1180px;
+      margin: 1.4rem auto;
+    }
+
+    .portfolio-modal .modal-body {
+      padding: 2.8rem 1.6rem 2.2rem;
+      background: radial-gradient(circle at top right, #faf4eb 0%, #f4eadf 60%, #efe1d0 100%);
+    }
+
+    .portfolio-modal .close {
+      color: #fff;
+      opacity: 1;
+      width: 42px;
+      height: 42px;
+      border-radius: 999px;
+      top: 1rem;
+      right: 1rem;
+      background: linear-gradient(120deg, var(--teal-700), var(--teal-500));
+      box-shadow: 0 8px 20px rgba(32, 93, 92, 0.35);
+      z-index: 2;
+    }
+
+    .skill-modal-panel {
+      text-align: left;
+      background: #fff;
+      border: 1px solid #e8dac9;
+      border-radius: 26px;
+      padding: 1.9rem 1.8rem;
+      box-shadow: 0 12px 28px rgba(45, 37, 30, 0.08);
+    }
+
+    .skill-modal-header {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      margin-bottom: 0.35rem;
+    }
+
+    .skill-modal-title-wrap {
+      min-width: 0;
+    }
+
+    .skill-modal-title-wrap .pill {
+      margin-bottom: 0.3rem;
+    }
+
+    .modal-skill-icon {
+      width: 54px;
+      height: 54px;
+      border-radius: 15px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      background: linear-gradient(130deg, var(--teal-700), var(--teal-500));
+      color: #fff;
+      font-size: 1.4rem;
+      flex-shrink: 0;
+    }
+
+    .portfolio-modal-title {
+      font-size: 1.9rem;
+      letter-spacing: 0.02em;
+      line-height: 1.15;
+    }
+
+    .portfolio-modal .divider-custom {
+      margin-top: 1rem;
+      margin-bottom: 1rem;
+    }
+
+    .modal-summary {
+      color: #3c3631;
+      line-height: 1.5;
+      margin-bottom: 0.9rem;
+    }
+
+    .modal-action {
+      margin-top: 0.45rem;
+      border-radius: 10px;
+      padding: 0.75rem 1.1rem;
+      font-weight: 700;
+      letter-spacing: 0.01em;
+    }
+
+    .contact-inline {
+      font-size: 1.35rem;
+      font-weight: 700;
+    }
+
+    .footer {
+      background: #25201c;
+    }
+
+    .copyright {
+      background: #171412;
+    }
+
+    @media (max-width: 767px) {
+      .masthead-subheading {
+        font-size: 1.1rem;
+      }
+
+      .contact-inline {
+        font-size: 1.05rem;
+        word-break: break-word;
+      }
+
+      .portfolio-modal .modal-body {
+        padding: 2rem 0.85rem 1.4rem;
+      }
+
+      .skill-modal-panel {
+        padding: 1.2rem 1rem;
+        border-radius: 20px;
+      }
+
+      .portfolio-modal-title {
+        font-size: 1.45rem;
+      }
+
+      .skill-modal-header {
+        align-items: flex-start;
+      }
+
+      .modal-skill-icon {
+        width: 46px;
+        height: 46px;
+        font-size: 1.2rem;
+      }
     }
   </style>
 
@@ -60,7 +337,7 @@
 <body id="page-top">
 
   <!-- Navigation -->
-  <nav class="navbar navbar-expand-lg bg-secondary text-uppercase fixed-top" id="mainNav">
+  <nav class="navbar navbar-expand-lg text-uppercase fixed-top" id="mainNav">
     <div class="container">
       <a class="navbar-brand js-scroll-trigger" href="#page-top">Thomas Helm</a>
       <button class="navbar-toggler navbar-toggler-right text-uppercase font-weight-bold bg-primary text-white rounded" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
@@ -70,7 +347,7 @@
       <div class="collapse navbar-collapse" id="navbarResponsive">
         <ul class="navbar-nav ml-auto">
           <li class="nav-item mx-0 mx-lg-1">
-            <a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="#portfolio">Portfolio</a>
+            <a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="#skills">Skills</a>
           </li>
           <li class="nav-item mx-0 mx-lg-1">
             <a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="#about">About</a>
@@ -81,16 +358,11 @@
   </nav>
 
   <!-- Masthead -->
-  <header class="masthead text-white text-center" style="background-color:#C7965D;">
+  <header class="masthead text-white text-center">
     <div class="container d-flex align-items-center flex-column">
-
-      <!-- Masthead Avatar Image -->
-      <img class="masthead-avatar mb-5" src="img/ProfileImage.JPG" alt="Thomas Picture" style="border-radius: 20px;">
-
-      <!-- Masthead Heading -->
+      <img class="masthead-avatar mb-5" src="img/ProfileImage.JPG" alt="Thomas Picture">
       <h1 class="masthead-heading text-uppercase mb-0">Thomas Helm</h1>
 
-      <!-- Icon Divider -->
       <div class="divider-custom divider-light">
         <div class="divider-custom-line"></div>
         <div class="divider-custom-icon">
@@ -99,187 +371,138 @@
         <div class="divider-custom-line"></div>
       </div>
 
-      <!-- Masthead Subheading -->
-      <p class="masthead-subheading font-weight-light mb-0">Programmer</p>
-      <p class="masthead-subheading font-weight-light mb-0">Tools - Software - Games</p>
-
+      <p class="masthead-subheading font-weight-light mb-0">Full Stack Developer focused on shipping practical web applications</p>
+      <p class="masthead-subheading font-weight-light mb-0">React, Firebase, and product-driven engineering</p>
     </div>
   </header>
 
-  <!-- Portfolio Section -->
-  <section class="page-section portfolio" id="portfolio">
+  <!-- Skills Section -->
+  <section class="page-section skill-section" id="skills">
     <div class="container">
-      <!-- Portfolio Grid Items -->
-      <div class="row justify-content-center">
-        <!-- Portfolio Section Heading -->
-        <h2 class="page-section-heading text-center text-uppercase text-secondary mb-0">Work</h2>
+      <h2 class="page-section-heading text-center text-uppercase text-secondary mb-0">Skills</h2>
 
-        <!-- Icon Divider -->
-        <div class="divider-custom">
-          <div class="divider-custom-line"></div>
-          <div class="divider-custom-icon">
-            <i class="fas fa-times"></i>
-          </div>
-          <div class="divider-custom-line"></div>
+      <div class="divider-custom">
+        <div class="divider-custom-line"></div>
+        <div class="divider-custom-icon">
+          <i class="fas fa-times"></i>
         </div>
+        <div class="divider-custom-line"></div>
+      </div>
 
-        <!-- NAIT -->
-        <div class="col-md-6 col-lg-4">
-          <div class="portfolio-item mx-auto" data-toggle="modal" data-target="#NAIT_Modal">
-            <div class="portfolio-item-caption d-flex align-items-center justify-content-center h-100 w-100">
-              <div class="portfolio-item-caption-content text-center text-white">
-                <i class="fas fa-plus fa-3x"></i>
-              </div>
-            </div>
-            <img class="img-fluid-fix" src="img/portfolio/Logos/NAIT.jpg" alt="NAIT Logo">
-          </div>
-        </div>
+      <p class="text-center lead mb-0">Each icon opens a detailed modal with the jobs and projects connected to that skill.</p>
 
-        <!-- Epic Games -->
-        <div class="col-md-6 col-lg-4">
-          <div class="portfolio-item mx-auto" data-toggle="modal" data-target="#EpicGames_Modal">
-            <div class="portfolio-item-caption d-flex align-items-center justify-content-center h-100 w-100">
-              <div class="portfolio-item-caption-content text-center text-white">
-                <i class="fas fa-plus fa-3x"></i>
-              </div>
-            </div>
-            <img class="img-fluid-fix" src="img/portfolio/Logos/EpicGames.png" alt="Epic Games Logo">
-          </div>
-        </div>
+      <div class="skill-grid">
+        <button class="skill-card" data-toggle="modal" data-target="#FrontendSkillModal" aria-label="Open frontend engineering skill details">
+          <i class="fab fa-react"></i>
+          <h3>Frontend Engineering</h3>
+          <p>React interfaces with accessible component systems.</p>
+        </button>
 
-        <!-- Beach Day Studios -->
-        <div class="col-md-6 col-lg-4">
-          <div class="portfolio-item mx-auto" data-toggle="modal" data-target="#BeachDayStudios_Modal">
-            <div class="portfolio-item-caption d-flex align-items-center justify-content-center h-100 w-100">
-              <div class="portfolio-item-caption-content text-center text-white">
-                <i class="fas fa-plus fa-3x"></i>
-              </div>
-            </div>
-            <img class="img-fluid-fix" src="img/portfolio/Logos/BeachDayStudios.png" alt="Beach Day Studios Logo">
-          </div>
-        </div>
+        <button class="skill-card" data-toggle="modal" data-target="#BackendSkillModal" aria-label="Open backend engineering skill details">
+          <i class="fas fa-server"></i>
+          <h3>Backend & API Design</h3>
+          <p>Cloud functions, API structure, and data flow design.</p>
+        </button>
 
+        <button class="skill-card" data-toggle="modal" data-target="#FirebaseSkillModal" aria-label="Open Firebase skill details">
+          <i class="fas fa-database"></i>
+          <h3>Firebase Architecture</h3>
+          <p>Auth, data modeling, and production deployment workflows.</p>
+        </button>
+
+        <button class="skill-card" data-toggle="modal" data-target="#QualitySkillModal" aria-label="Open quality and reliability skill details">
+          <i class="fas fa-vial"></i>
+          <h3>Quality & Reliability</h3>
+          <p>Testing, debugging, and release confidence in production.</p>
+        </button>
+
+        <button class="skill-card" data-toggle="modal" data-target="#ProductSkillModal" aria-label="Open product development skill details">
+          <i class="fas fa-users"></i>
+          <h3>Product Development</h3>
+          <p>Build loops informed by real user and teacher feedback.</p>
+        </button>
+
+        <button class="skill-card" data-toggle="modal" data-target="#CollaborationSkillModal" aria-label="Open collaboration skill details">
+          <i class="fas fa-people-arrows"></i>
+          <h3>Team Collaboration</h3>
+          <p>Agile delivery, documentation, and iterative refinement.</p>
+        </button>
       </div>
     </div>
   </section>
-  <section class="page-section portfolio bg-primary" id="portfolio">
+
+  <!-- Recent Project -->
+  <section class="page-section" id="recent-project">
     <div class="container">
-      <!-- Portfolio Grid Items -->
+      <h2 class="page-section-heading text-center text-uppercase text-secondary mb-0">Recent Full Stack Project</h2>
+
+      <div class="divider-custom">
+        <div class="divider-custom-line"></div>
+        <div class="divider-custom-icon">
+          <i class="fas fa-times"></i>
+        </div>
+        <div class="divider-custom-line"></div>
+      </div>
+
       <div class="row justify-content-center">
-        <!-- Portfolio Section Heading -->
-        <h2 class="page-section-heading text-center text-uppercase text-white mb-0">Projects</h2>
-
-        <!-- Icon Divider -->
-        <div class="divider-custom">
-          <div class="divider-custom-line" style="background-color: white;"></div>
-          <div class="divider-custom-icon">
-            <i class="fas fa-times" style="color: white;"></i>
-          </div>
-          <div class="divider-custom-line" style="background-color: white;"></div>
-        </div>
-
-        <!-- Text Adventure Parser -->
-        <div class="col-md-6 col-lg-4">
-          <div class="portfolio-item mx-auto" data-toggle="modal" data-target="#TAP_Modal">
-            <div class="portfolio-item-caption d-flex align-items-center justify-content-center h-100 w-100">
-              <div class="portfolio-item-caption-content text-center text-white">
-                <h1>Tool<br/>(C++)</h1>
-              </div>
-            </div>
-            <img class="img-fluid-fix" src="img/portfolio/TextAdventureParserMap (Small).jpg" alt="Text Adventure Parser Logo">
+        <div class="col-lg-10">
+          <div class="skill-card text-left" style="cursor: default;">
+            <span class="pill">Featured</span>
+            <h3 style="font-size: 1.6rem; margin-bottom: 0.75rem;">Playlingolo Teachers Portal</h3>
+            <p style="font-size: 1rem; margin-bottom: 0.85rem;">
+              Production teachers portal for Lingolo focused on onboarding, classroom workflows, and fast day-to-day usage.
+            </p>
+            <p style="font-size: 1rem; margin-bottom: 1rem;">
+              <strong>Stack:</strong> React, Chakra UI, Firebase
+            </p>
+            <ul class="experience-list" style="margin-top: 0;">
+              <li><strong>Frontend:</strong> Built responsive React + Chakra UI flows for teacher onboarding and classroom management.</li>
+              <li><strong>Backend:</strong> Structured Firebase reads/writes and added admin workflows with Firebase Functions.</li>
+              <li><strong>Impact:</strong> Reduced downloaded payload from 10 MB to 125 KB.</li>
+            </ul>
+            <a class="btn btn-primary" href="https://playlingolo.com/teachers" target="_blank" rel="noopener noreferrer">
+              <i class="fas fa-external-link-alt fa-fw"></i>
+              Visit Project
+            </a>
           </div>
         </div>
-
-        <!-- Floating Inspector -->
-        <div class="col-md-6 col-lg-4">
-          <div class="portfolio-item mx-auto" data-toggle="modal" data-target="#FloatingInspector_Modal">
-            <div class="portfolio-item-caption d-flex align-items-center justify-content-center h-100 w-100">
-              <div class="portfolio-item-caption-content text-center text-white">
-                <h1>Tool<br/>(Unity)</h1>
-              </div>
-            </div>
-            <img class="img-fluid-fix" src="img/portfolio/FloatingInspector_Large.png" alt="Floating Inspector Logo">
-          </div>
-        </div>
-
-        <!-- Terrain Generator -->
-        <div class="col-md-6 col-lg-4">
-          <div class="portfolio-item mx-auto" data-toggle="modal" data-target="#TerrainGenerator_Modal">
-            <div class="portfolio-item-caption d-flex align-items-center justify-content-center h-100 w-100">
-              <div class="portfolio-item-caption-content text-center text-white">
-                <h1>Tool<br/>(Unity)</h1>
-              </div>
-            </div>
-            <img class="img-fluid-fix" src="img/portfolio/TerrainGenerator_Large.png" alt="Terrain Generator">
-          </div>
-        </div>
-
-        <!-- Drython -->
-        <div class="col-md-6 col-lg-4">
-          <div class="portfolio-item mx-auto" data-toggle="modal" data-target="#Drython_Modal">
-            <div class="portfolio-item-caption d-flex align-items-center justify-content-center h-100 w-100">
-              <div class="portfolio-item-caption-content text-center text-white">
-                <h1>Engine<br/>(Rust)</h1>
-              </div>
-            </div>
-            <img class="img-fluid-fix" src="img/portfolio/Drython_Large.png" alt="Drython Logo">
-          </div>
-        </div>
-
-        <!-- Black Matter -->
-        <div class="col-md-6 col-lg-4">
-          <div class="portfolio-item mx-auto" data-toggle="modal" data-target="#BlackMatter_Modal">
-            <div class="portfolio-item-caption d-flex align-items-center justify-content-center h-100 w-100">
-              <div class="portfolio-item-caption-content text-center text-white">
-                  <h1>Game<br/>(Unity)</h1>
-              </div>
-            </div>
-            <img class="img-fluid-fix" src="img/portfolio/BlackMatter_Large.png" alt="Black Matter Logo">
-          </div>
-        </div>
-
       </div>
     </div>
   </section>
-  <section class="page-section portfolio" id="portfolio">
-    <div class="container">
-      <div class="row justify-content-center">
-        <!-- Other Section Heading -->
-        <h2 class="page-section-heading text-center text-uppercase text-secondary mb-0">Other</h2>
 
-        <!-- Icon Divider -->
-        <div class="divider-custom">
-          <div class="divider-custom-line"></div>
-          <div class="divider-custom-icon">
-            <i class="fas fa-times"></i>
-          </div>
-          <div class="divider-custom-line"></div>
-        </div>
+  <!-- Featured Links -->
+  <section class="page-section text-white skill-highlight" id="links">
+    <div class="container text-center">
+      <h2 class="page-section-heading text-center text-uppercase text-white mb-0">Live Work</h2>
 
-        <div class="col-md-6 col-lg-4">
-          <a class="portfolio-item mx-auto" href="https://nocturnal-wisp.itch.io/" target="_blank">
-            <div class="portfolio-item-caption d-flex align-items-center justify-content-center h-100 w-100">
-              <div class="portfolio-item-caption-content text-center text-white">
-                <h1>Itch.io</h1>
-              </div>
-            </div>
-            <img class="img-fluid-fix" src="img/portfolio/Itch.png" alt="Itch.io portfolio link">
-          </a>
+      <div class="divider-custom divider-light">
+        <div class="divider-custom-line"></div>
+        <div class="divider-custom-icon">
+          <i class="fas fa-times"></i>
         </div>
+        <div class="divider-custom-line"></div>
       </div>
 
+      <p class="lead mb-5">Browse production apps and supporting repositories.</p>
+
+      <a class="btn btn-xl btn-outline-light mx-2 mb-3" href="https://playlingolo.com/teachers" target="_blank" rel="noopener noreferrer">
+        <i class="fas fa-globe mr-2"></i>
+        Playlingolo Teachers
+      </a>
+
+      <a class="btn btn-xl btn-outline-light mx-2 mb-3" href="https://github.com/NocturnalWisp" target="_blank" rel="noopener noreferrer">
+        <i class="fab fa-github mr-2"></i>
+        GitHub
+      </a>
     </div>
   </section>
 
   <!-- About Section -->
-  <section class="page-section bg-primary text-white mb-0" id="about">
+  <section class="page-section" id="about">
     <div class="container">
+      <h2 class="page-section-heading text-center text-uppercase text-secondary">About</h2>
 
-      <!-- About Section Heading -->
-      <h2 class="page-section-heading text-center text-uppercase text-white">About</h2>
-
-      <!-- Icon Divider -->
-      <div class="divider-custom divider-light">
+      <div class="divider-custom">
         <div class="divider-custom-line"></div>
         <div class="divider-custom-icon">
           <i class="fas fa-times"></i>
@@ -287,61 +510,54 @@
         <div class="divider-custom-line"></div>
       </div>
 
-      <!-- About Section Content -->
       <div class="row">
-        <div class="col-lg-4 ml-auto">
+        <div class="col-lg-5 ml-auto">
           <p class="lead">
-            Thomas (T.J.) Helm has been developing projects for <span id="years"></span> years. 
-            The examples listed above are a collection of the best representation of his skills.
-            Most of the projects on itch.io were created during week or month long game jams.
+            Thomas (T.J.) Helm is a full stack developer with <span id="years"></span> years building practical software products.
+            Current focus: React frontends, Firebase-backed services, and production-ready delivery.
           </p>
         </div>
-        <div class="col-lg-4 mr-auto">
+        <div class="col-lg-5 mr-auto">
           <p class="lead">
-            You can also check out his various social media accounts. Links are in the footer of this page.
-            Feel free to message at anytime; I love to chat!
+            Explore experience by skill and review shipped web app work.
+            Available for collaboration, contracts, and full-time opportunities.
           </p>
         </div>
       </div>
 
-      <div class="text-center font-weight-bold" style="font-size: 150%">
-        <a href="mailto:helmthomas2000@gmail.com" class="text-decoration-none">helmthomas2000@gmail.com</a>
+      <div class="text-center mt-4">
+        <a href="mailto:helmthomas2000@gmail.com" class="contact-inline">helmthomas2000@gmail.com</a>
       </div>
-
-
     </div>
   </section>
 
   <!-- Footer -->
-  <footer class="footer text-center">
+  <footer class="footer text-center text-white">
     <div class="container">
       <div class="row">
-
-        <!-- Footer Location -->
         <div class="col-lg-6 mb-5 mb-lg-0">
           <h4 class="text-uppercase mb-4">Location</h4>
           <p class="lead mb-0">Edmonton, AB Canada</p>
         </div>
 
-        <!-- Footer Social Icons -->
         <div class="col-lg-6 mb-5 mb-lg-0">
           <h4 class="text-uppercase mb-4">Around the Web</h4>
-          <a class="btn btn-outline-light btn-social mx-1" href="mailto:helmthomas2000@gmail.com" target="_blank">
+          <a class="btn btn-outline-light btn-social mx-1" href="mailto:helmthomas2000@gmail.com" target="_blank" rel="noopener noreferrer">
             <i class="far fa-fw fa-envelope"></i>
           </a>
-          <a class="btn btn-outline-light btn-social mx-1" href="https://assetstore.unity.com/publishers/56467" target="_blank">
-            <img class="far fa-fw" src="img/UnityLogo.png"></img>
+          <a class="btn btn-outline-light btn-social mx-1" href="https://assetstore.unity.com/publishers/56467" target="_blank" rel="noopener noreferrer">
+            <i class="fab fa-fw fa-unity"></i>
           </a>
-          <a class="btn btn-outline-light btn-social mx-1" href="https://github.com/NocturnalWisp" target="_blank">
-            <img class="far fa-fw" src="img/GithubLogo.png"></img>
+          <a class="btn btn-outline-light btn-social mx-1" href="https://github.com/NocturnalWisp" target="_blank" rel="noopener noreferrer">
+            <i class="fab fa-fw fa-github"></i>
           </a>
-          <a class="btn btn-outline-light btn-social mx-1" href="https://www.linkedin.com/in/t-j-h-322293100/" target="_blank">
+          <a class="btn btn-outline-light btn-social mx-1" href="https://www.linkedin.com/in/t-j-h-322293100/" target="_blank" rel="noopener noreferrer">
             <i class="fab fa-fw fa-linkedin-in"></i>
           </a>
-          <a class="btn btn-outline-light btn-social mx-1" href="https://www.youtube.com/channel/UCavIy_iVGc1Wt1Ldp82CGTg" target="_blank">
+          <a class="btn btn-outline-light btn-social mx-1" href="https://www.youtube.com/channel/UCavIy_iVGc1Wt1Ldp82CGTg" target="_blank" rel="noopener noreferrer">
             <i class="fab fa-fw fa-youtube"></i>
           </a>
-          <a class="btn btn-outline-light btn-social mx-1" href="https://twitter.com/NocturnalWisp" target="_blank">
+          <a class="btn btn-outline-light btn-social mx-1" href="https://twitter.com/NocturnalWisp" target="_blank" rel="noopener noreferrer">
             <i class="fab fa-fw fa-twitter"></i>
           </a>
         </div>
@@ -356,290 +572,45 @@
     </div>
   </section>
 
-  <!-- Scroll to Top Button (Only visible on small and extra-small screen sizes) -->
-  <div class="scroll-to-top d-lg-none position-fixed ">
+  <!-- Scroll to Top Button -->
+  <div class="scroll-to-top d-lg-none position-fixed">
     <a class="js-scroll-trigger d-block text-center text-white rounded" href="#page-top">
       <i class="fa fa-chevron-up"></i>
     </a>
   </div>
 
-  <!-- Portfolio Modals -->
-
-  <!-- NAIT Modal -->
-  <div class="portfolio-modal modal fade" id="NAIT_Modal" tabindex="-1" role="dialog" aria-labelledby="NAIT_Modal_Label" aria-hidden="true">
+  <!-- Skill Modals -->
+  <div class="portfolio-modal modal fade" id="FrontendSkillModal" tabindex="-1" role="dialog" aria-labelledby="FrontendSkillModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-xl" role="document">
       <div class="modal-content">
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">
-            <i class="fas fa-times"></i>
-          </span>
+          <span aria-hidden="true"><i class="fas fa-times"></i></span>
         </button>
         <div class="modal-body text-center">
           <div class="container">
             <div class="row justify-content-center">
-              <div class="col-lg-8">
-                <!-- Portfolio Modal - Image -->
-                <img class="img-fluid rounded mb-5" src="img/portfolio/Logos/NAIT_Small.jpg" alt="NAIT Logo">
-                <!-- Portfolio Modal - Title -->
-                <h2 class="portfolio-modal-title text-secondary text-uppercase mb-0">NAIT</h2>
-                <!-- Icon Divider -->
+              <div class="col-lg-11 skill-modal-panel">
+                <div class="skill-modal-header">
+                  <div class="modal-skill-icon"><i class="fab fa-react"></i></div>
+                  <div class="skill-modal-title-wrap">
+                    <span class="pill">Skill</span>
+                    <h2 class="portfolio-modal-title text-secondary text-uppercase mb-0" id="FrontendSkillModalLabel">Frontend Engineering</h2>
+                  </div>
+                </div>
                 <div class="divider-custom">
                   <div class="divider-custom-line"></div>
-                  <div class="divider-custom-icon">
-                    <i class="fas fa-times"></i>
-                  </div>
+                  <div class="divider-custom-icon"><i class="fas fa-times"></i></div>
                   <div class="divider-custom-line"></div>
                 </div>
-
-                <!-- Portfolio Modal - Text -->
-                <p class="mb-5">
-                  During my time at NAIT I worked as a Software Developer implementing features and systems
-                  <br/>based on the client and senior developer expectations. I often took the opportunity
-                  <br/>to tackle and implement entire features independentely with peer reviewed pull requests.
-                  <ul style="text-align: left;">
-                    <strong>Tools I used:</strong>
-                    <li>Unity 3D Game Engine</li>
-                    <li>Visual Studio/VS Code</li>
-                    <li>Git version control (BitBucket)</li>
-                    <li>Jira</li>
-                    <li>Alt-unity automated tester</li>
-                    <li>JSON.net library</li>
-                    <li>Sharepoint</li>
-                  </ul>
-                  
-                  <ul style="text-align: left;">
-                    <strong>Features I worked on:</strong>
-                    <li>Saving/Loading user created project files in the JSON format.</li>
-                    <li>Integrated CI/CD with unity cloud for quicker iteration times.</li>
-                    <li>Created a tutorial system with quick iteration for the development team.</li>
-                    <li>Designed a quiz system for both instructors and students to test knowledge as the instructors sees fit.</li>
-                    <li>Documented systems and created batch files for better iteration on new aspects to the features.
-                      <br/>(A new widget type could easily be created by running the script which would populate new C# files with the appropriate data.)
-                    </li>
-                    <li>Automated documentation using Doxygen and GraphViz for new-comers to the project.</li>
-                  </ul>
-                  <br/>
-                  My time spent working at NAIT has been a great source for learning and developing my skills.
-                  <br/> I worked well with my fellow team mates using agile development and focusing on how we can make the application better.
-                </p>
-                <br/>
-                <button class="btn btn-primary" href="#" data-dismiss="modal">
-                  <i class="fas fa-times fa-fw"></i>
-                  Close Window
-                </button>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- Epic Games Modal -->
-  <div class="portfolio-modal modal fade" id="EpicGames_Modal" tabindex="-1" role="dialog" aria-labelledby="EpicGames_Modal_Label" aria-hidden="true">
-    <div class="modal-dialog modal-xl" role="document">
-      <div class="modal-content">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">
-            <i class="fas fa-times"></i>
-          </span>
-        </button>
-        <div class="modal-body text-center">
-          <div class="container">
-            <div class="row justify-content-center">
-              <div class="col-lg-8">
-                <!-- Portfolio Modal - Image -->
-                <img class="img-fluid rounded mb-5" src="img/portfolio/Logos/EpicGames_Small.png" alt="Epic Games Logo">
-                <!-- Portfolio Modal - Title -->
-                <h2 class="portfolio-modal-title text-secondary text-uppercase mb-0">Epic Games</h2>
-                <!-- Icon Divider -->
-                <div class="divider-custom">
-                  <div class="divider-custom-line"></div>
-                  <div class="divider-custom-icon">
-                    <i class="fas fa-times"></i>
-                  </div>
-                  <div class="divider-custom-line"></div>
-                </div>
-
-                <!-- Portfolio Modal - Text -->
-                <p class="mb-5">
-                  Epic games was my first payed job in the tech field. I worked here for 8 months
-                  <br/>as a software tester ensuring the quality of the Unreal engine and it's core systems.
-                  <ul style="text-align: left;">
-                    Tools I used:
-                    <li>Unreal Engine & Unreal Engine Build Tool (UBT)</li>
-                    <li>Visual Studio</li>
-                    <li>Perforce Version Control</li>
-                  </ul>
-                  
-                  <ul style="text-align: left;">
-                    I spent most of my time running tests relating to the following:
-                    <li>Core engine build system.</li>
-                    <li>Gameplay systems.</li>
-                    <li>Blueprint node systems.</li>
-                    <li>Integrated tools like Nanite & Lumen.</li>
-                    <li>C++ build system to ensure C++ developer quality.</li>
-                  </ul>
-
-                  I also spent some time creating a couple of batch files for aiding in tedious files transfers, for console
-                  <br/>development testing, to the directory I was working with.
-                </p>
-                <br/>
-                <button class="btn btn-primary" href="#" data-dismiss="modal">
-                  <i class="fas fa-times fa-fw"></i>
-                  Close Window
-                </button>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- Beach Day Studios Modal -->
-  <div class="portfolio-modal modal fade" id="BeachDayStudios_Modal" tabindex="-1" role="dialog" aria-labelledby="BeachDayStudios_Modal_Label" aria-hidden="true">
-    <div class="modal-dialog modal-xl" role="document">
-      <div class="modal-content">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">
-            <i class="fas fa-times"></i>
-          </span>
-        </button>
-        <div class="modal-body text-center">
-          <div class="container">
-            <div class="row justify-content-center">
-              <div class="col-lg-8">
-                <!-- Portfolio Modal - Image -->
-                <img class="img-fluid rounded mb-5" src="img/portfolio/Logos/BeachDayStudios_Small.png" alt="Beach Day Studios Logo">
-                <!-- Portfolio Modal - Title -->
-                <h2 class="portfolio-modal-title text-secondary text-uppercase mb-0">Beach Day Studios</h2>
-                <!-- Icon Divider -->
-                <div class="divider-custom">
-                  <div class="divider-custom-line"></div>
-                  <div class="divider-custom-icon">
-                    <i class="fas fa-times"></i>
-                  </div>
-                  <div class="divider-custom-line"></div>
-                </div>
-
-                <!-- Portfolio Modal - Text -->
-                <p class="mb-5">
-                  I interned at Beach Day Studios for 4 months during my last simester of college.
-                  <br/> It was a great opportunity to apply some of the things I learned in a working environment.
-                  <br/> The focus on the Beach Day team was hypercasual games specifically VR related.
-                  <br/><br/>
-                  One such game I worked on was the idea of a monster whos' aim was to eat all the food within
-                  <br/>a certain time. The monster had no legs and the player was forced to crawl around in the style of
-                  <br/>Gorilla Tag. I created the idea and implemented the main mechanics using the Unity VR API.
-                  <br/>Unfortunately it seems the company is no longer operating as I did leave to pursue paid work.
-                  <ul style="text-align: left;">
-                    Tools I used:
-                    <li>Unity 3D Game Engine</li>
-                    <li>Oculus SDK</li>
-                    <li>Visual Studio Code</li>
-                    <li>Git Version Control</li>
-                    <li>Unity Android Builds & Optimization</li>
-                  </ul>
-                </p>
-                <br/>
-                <button class="btn btn-primary" href="#" data-dismiss="modal">
-                  <i class="fas fa-times fa-fw"></i>
-                  Close Window
-                </button>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- Floating Inspector Modal -->
-  <div class="portfolio-modal modal fade" id="FloatingInspector_Modal" tabindex="-1" role="dialog" aria-labelledby="FloatingInspector_Modal_Label" aria-hidden="true">
-    <div class="modal-dialog modal-xl" role="document">
-      <div class="modal-content">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">
-            <i class="fas fa-times"></i>
-          </span>
-        </button>
-        <div class="modal-body text-center">
-          <div class="container">
-            <div class="row justify-content-center">
-              <div class="col-lg-8">
-                <!-- Portfolio Modal - Title -->
-                <h2 class="portfolio-modal-title text-secondary text-uppercase mb-0">Floating Inspector</h2>
-                <!-- Icon Divider -->
-                <div class="divider-custom">
-                  <div class="divider-custom-line"></div>
-                  <div class="divider-custom-icon">
-                    <i class="fas fa-times"></i>
-                  </div>
-                  <div class="divider-custom-line"></div>
-                </div>
-
-                <!-- Carousel -->
-                <div id="floatingInspectorCarousel" class="carousel slide" data-ride="carousel">
-                  <ol class="carousel-indicators">
-                    <li data-target="#floatingInspectorCarousel" data-slide-to="0" class="active"></li>
-                    <li data-target="#floatingInspectorCarousel" data-slide-to="1"></li>
-                    <li data-target="#floatingInspectorCarousel" data-slide-to="2"></li>
-                    <li data-target="#floatingInspectorCarousel" data-slide-to="3"></li>
-                    <li data-target="#floatingInspectorCarousel" data-slide-to="4"></li>
-                  </ol>
-                  <div class="carousel-inner">
-                    <div class="carousel-item active">
-                      <iframe width="367" height="209" src="https://www.youtube.com/embed/cxcXNN3OeLc" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-                    </div>
-                    <div class="carousel-item">
-                      <img class="img-fluid rounded mb-5" width="367" height="209" src="https://assetstorev1-prd-cdn.unity3d.com/package-screenshot/ea235c43-08be-4b13-b156-cfd1032789dd.webp" alt="An Inspector Where You Need It">
-                    </div>
-                    <div class="carousel-item">
-                      <img class="img-fluid rounded mb-5" width="367" height="209" src="https://assetstorev1-prd-cdn.unity3d.com/package-screenshot/9b072ef5-df75-4545-8e79-61c561e9590a.webp" alt="Game Object Component View">
-                    </div>
-                    <div class="carousel-item">
-                      <img class="img-fluid rounded mb-5" width="367" height="209" src="https://assetstorev1-prd-cdn.unity3d.com/package-screenshot/af9a968d-c86a-4054-a3db-5323e0504830.webp" alt="Open As Many As You Need">
-                    </div>
-                    <div class="carousel-item">
-                      <img class="img-fluid rounded mb-5" width="367" height="209" src="https://assetstorev1-prd-cdn.unity3d.com/package-screenshot/a3ac028f-9cd0-4185-b734-d105e9bbf244.webp" alt="Rename Components To Suit Your Needs">
-                    </div>
-                  </div>
-                  <a class="carousel-control-prev" href="#floatingInspectorCarousel" role="button" data-slide="prev">
-                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                    <span class="sr-only">Previous</span>
-                  </a>
-                  <a class="carousel-control-next" href="#floatingInspectorCarousel" role="button" data-slide="next">
-                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                    <span class="sr-only">Next</span>
-                  </a>
-                </div>
-
-                <!-- Portfolio Modal - Text -->
-                <p class="mb-5">
-                  Using the Unity inspector window is painful and tedious when working with many objects or when trying to drag and drop items around the screen.
-                  <br/>
-                  <br/>
-                  I created the Floating Inspector tool to make working with Unity much more efficient.
-                  <br/>It's as simple as selecting (or hovering) over an object in the scene/hierarchy/project windows and pressing "1".
-                  This opens a convenient small window to quickly work within and manipulate selected objects as you need.
-                  <ul style="text-align: left;">
-                    Other Features:
-                    <li>Component Hover - When you need to quickly reference what components a game object has, hover over it and a small window will reveal it.</li>
-                    <li>Floating Hierarchy - Useful for jumping between game object parent, siblings, and children. Especially important for UI!</li>
-                  </ul> 
-                </p>
-
-                <button class="btn btn-primary" style="margin-bottom: 20px" 
-                    onclick="gotoSite('https://assetstore.unity.com/packages/tools/utilities/floating-inspector-236873')" 
-                    href="#" data-dismiss="modal">
+                <p class="modal-summary">React-first frontend delivery with reusable components and clear UX flows.</p>
+                <ul class="experience-list">
+                  <li><strong>Lingolo:</strong> Designed and shipped React feature flows for the teachers portal.</li>
+                  <li><strong>Chakra UI:</strong> Built consistent, responsive interfaces with reusable component patterns.</li>
+                  <li><strong>Seljax:</strong> Planned web-serving features and interface behavior for production software.</li>
+                </ul>
+                <button class="btn btn-primary modal-action" onclick="gotoSite('https://playlingolo.com/teachers')">
                   <i class="fas fa-plus fa-fw"></i>
-                  Unity Asset Store
-                </button>
-                <br/>
-                <button class="btn btn-primary" href="#" data-dismiss="modal">
-                  <i class="fas fa-times fa-fw"></i>
-                  Close Window
+                  View Frontend Project
                 </button>
               </div>
             </div>
@@ -649,62 +620,37 @@
     </div>
   </div>
 
-  <!-- Text Adventure Parser Modal -->
-  <div class="portfolio-modal modal fade" id="TAP_Modal" tabindex="-1" role="dialog" aria-labelledby="TAP_Modal_Label" aria-hidden="true">
+  <div class="portfolio-modal modal fade" id="BackendSkillModal" tabindex="-1" role="dialog" aria-labelledby="BackendSkillModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-xl" role="document">
       <div class="modal-content">
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">
-            <i class="fas fa-times"></i>
-          </span>
+          <span aria-hidden="true"><i class="fas fa-times"></i></span>
         </button>
         <div class="modal-body text-center">
           <div class="container">
             <div class="row justify-content-center">
-              <div class="col-lg-8">
-                <!-- Portfolio Modal - Title -->
-                <h2 class="portfolio-modal-title text-secondary text-uppercase mb-0">Text Adventure Parser</h2>
-                <!-- Icon Divider -->
+              <div class="col-lg-11 skill-modal-panel">
+                <div class="skill-modal-header">
+                  <div class="modal-skill-icon"><i class="fas fa-server"></i></div>
+                  <div class="skill-modal-title-wrap">
+                    <span class="pill">Skill</span>
+                    <h2 class="portfolio-modal-title text-secondary text-uppercase mb-0" id="BackendSkillModalLabel">Backend & API Design</h2>
+                  </div>
+                </div>
                 <div class="divider-custom">
                   <div class="divider-custom-line"></div>
-                  <div class="divider-custom-icon">
-                    <i class="fas fa-times"></i>
-                  </div>
+                  <div class="divider-custom-icon"><i class="fas fa-times"></i></div>
                   <div class="divider-custom-line"></div>
                 </div>
-
-                <img width="600" height="700" src="img/portfolio/TextAdventureParserMap (Small).jpg"></iframe>
-                <p>(For full sized image of diagram, see the github link below)</p>
-
-                <!-- Portfolio Modal - Text -->
-                <p class="mb-5">
-                  The text adventure parser (TAP) is a project I created in C++ to develop my skills and familiarize myself with pointers
-                  and applying systems and patterns I have learned, in a new project.
-                  <br/><br/>
-                  TAP was created to be simple to setup and use. The releases section of the Github has the .dll file, and a handy diagram
-                  is provided in the README to show how the parser stores each object in the TextAdventure class.
-                  <br/><br/>
-                  Features:
-                  <ul style="text-align: left;">
-                    <li>Parsing form a custom .ta file type.</li>
-                    <li>Simple & quick .dll file.</li>
-                    <li>Simple objects (TAObject) to quickly access your text adventure data.</li>
-                    <li>Psuedo-RTTI for quick reference to each object.</li>
-                    <li>Thorough reference diagram.</li>
-                    <li>Simplified polymorphism for quick access to the objects you need.</li>
-                  </ul>
-                </p>
-
-                <button class="btn btn-primary" style="margin-bottom: 20px" 
-                    onclick="gotoSite('https://github.com/NocturnalWisp/TextAdventureParser')" 
-                    href="#" data-dismiss="modal">
+                <p class="modal-summary">Backend implementation focused on reliable data flow and maintainable service logic.</p>
+                <ul class="experience-list">
+                  <li><strong>Lingolo:</strong> Built backend-connected features for teacher onboarding and admin workflows.</li>
+                  <li><strong>Data layer:</strong> Structured predictable reads/writes and state transitions across app features.</li>
+                  <li><strong>NAIT:</strong> Implemented JSON-based save/load systems and structured data tooling.</li>
+                </ul>
+                <button class="btn btn-primary modal-action" onclick="gotoSite('https://playlingolo.com/teachers')">
                   <i class="fas fa-plus fa-fw"></i>
-                  Github
-                </button>
-                <br/>
-                <button class="btn btn-primary" href="#" data-dismiss="modal">
-                  <i class="fas fa-times fa-fw"></i>
-                  Close Window
+                  View Backend-Integrated App
                 </button>
               </div>
             </div>
@@ -714,85 +660,37 @@
     </div>
   </div>
 
-  <!-- SOO Modal -->
-  <div class="portfolio-modal modal fade" id="SOO_Modal" tabindex="-1" role="dialog" aria-labelledby="SOO_Modal_Label" aria-hidden="true">
+  <div class="portfolio-modal modal fade" id="FirebaseSkillModal" tabindex="-1" role="dialog" aria-labelledby="FirebaseSkillModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-xl" role="document">
       <div class="modal-content">
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">
-            <i class="fas fa-times"></i>
-          </span>
+          <span aria-hidden="true"><i class="fas fa-times"></i></span>
         </button>
         <div class="modal-body text-center">
           <div class="container">
             <div class="row justify-content-center">
-              <div class="col-lg-8">
-                <!-- Portfolio Modal - Title -->
-                <h2 class="portfolio-modal-title text-secondary text-uppercase mb-0">Scriptable Object Organizer</h2>
-                <!-- Icon Divider -->
+              <div class="col-lg-11 skill-modal-panel">
+                <div class="skill-modal-header">
+                  <div class="modal-skill-icon"><i class="fas fa-database"></i></div>
+                  <div class="skill-modal-title-wrap">
+                    <span class="pill">Skill</span>
+                    <h2 class="portfolio-modal-title text-secondary text-uppercase mb-0" id="FirebaseSkillModalLabel">Firebase Architecture</h2>
+                  </div>
+                </div>
                 <div class="divider-custom">
                   <div class="divider-custom-line"></div>
-                  <div class="divider-custom-icon">
-                    <i class="fas fa-times"></i>
-                  </div>
+                  <div class="divider-custom-icon"><i class="fas fa-times"></i></div>
                   <div class="divider-custom-line"></div>
                 </div>
-                
-                <!-- Carousel -->
-                <div id="sooCarousel" class="carousel slide" data-ride="carousel">
-                  <ol class="carousel-indicators">
-                    <li data-target="#sooCarousel" data-slide-to="0" class="active"></li>
-                    <li data-target="#sooCarousel" data-slide-to="1"></li>
-                    <li data-target="#sooCarousel" data-slide-to="2"></li>
-                    <li data-target="#sooCarousel" data-slide-to="3"></li>
-                  </ol>
-                  <div class="carousel-inner">
-                    <div class="carousel-item active">
-                      <iframe width="347" height="189" src="https://www.youtube.com/embed/8oRKzAZF2TM" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-                    </div>
-                    <div class="carousel-item">
-                      <img class="img-fluid rounded mb-5" width="347" height="189" src="https://img.itch.zone/aW1hZ2UvMTMxNDU3Mi83NjQzNTk1LnBuZw==/347x500/xDR4gM.png" alt="Second slide">
-                    </div>
-                    <div class="carousel-item">
-                      <img class="img-fluid rounded mb-5" width="347" height="189" src="https://img.itch.zone/aW1hZ2UvMTMxNDU3Mi83NjQzNTk3LnBuZw==/347x500/iXwVRy.png" alt="Third slide">
-                    </div>
-                    <div class="carousel-item">
-                      <img class="img-fluid rounded mb-5" width="347" height="189" src="https://img.itch.zone/aW1hZ2UvMTMxNDU3Mi83NjQzNTk2LnBuZw==/347x500/q6AcMe.png" alt="Fourth slide">
-                    </div>
-                  </div>
-                  <a class="carousel-control-prev" href="#sooCarousel" role="button" data-slide="prev">
-                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                    <span class="sr-only">Previous</span>
-                  </a>
-                  <a class="carousel-control-next" href="#sooCarousel" role="button" data-slide="next">
-                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                    <span class="sr-only">Next</span>
-                  </a>
-                </div>
-
-                <!-- Portfolio Modal - Text -->
-                <p class="mb-5">
-                  The Scriptable Object Organizer (SOO) is a tool for both Unity programmers and Developers.
-                  It enables quick and simple access to scriptable objects without the need to dive
-                  through multiple folders.
-                  <br/><br/>
-                  SOO features its very own window where you can chose between multiple tabs.
-                  The organizer allows for managing objects through a list format using optional filters.
-                  It also allows programmers to quickly alter the backend script of a scriptable object
-                  to add small fields or even whole functions.
-                  <br/><br/>
-                  You can check out the link to the unity asset store below! 
-                </p>
-                <button class="btn btn-primary" style="margin-bottom: 20px" 
-                    onclick="gotoSite('https://assetstore.unity.com/packages/tools/utilities/scriptable-object-organizer-204626')" 
-                    href="#" data-dismiss="modal">
+                <p class="modal-summary">Firebase architecture for fast shipping, reliable auth, and scalable app data.</p>
+                <ul class="experience-list">
+                  <li><strong>Lingolo:</strong> Implemented Google-based authentication and role-aware access.</li>
+                  <li><strong>Cloud data:</strong> Structured Firebase reads/writes for real-time classroom workflows.</li>
+                  <li><strong>Functions:</strong> Added admin dashboard behavior with Firebase Functions.</li>
+                </ul>
+                <button class="btn btn-primary modal-action" onclick="gotoSite('https://playlingolo.com/teachers')">
                   <i class="fas fa-plus fa-fw"></i>
-                  Unity Asset Store
-                </button>
-                <br/>
-                <button class="btn btn-primary" href="#" data-dismiss="modal">
-                  <i class="fas fa-times fa-fw"></i>
-                  Close Window
+                  View Firebase Project
                 </button>
               </div>
             </div>
@@ -802,94 +700,73 @@
     </div>
   </div>
 
-  <!-- Terrain Generator Modal -->
-  <div class="portfolio-modal modal fade" id="TerrainGenerator_Modal" tabindex="-1" role="dialog" aria-labelledby="TerrainGenerator_Modal_Label" aria-hidden="true">
+  <div class="portfolio-modal modal fade" id="QualitySkillModal" tabindex="-1" role="dialog" aria-labelledby="QualitySkillModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-xl" role="document">
       <div class="modal-content">
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">
-            <i class="fas fa-times"></i>
-          </span>
+          <span aria-hidden="true"><i class="fas fa-times"></i></span>
         </button>
         <div class="modal-body text-center">
           <div class="container">
             <div class="row justify-content-center">
-              <div class="col-lg-8">
-                <!-- Portfolio Modal - Title -->
-                <h2 class="portfolio-modal-title text-secondary text-uppercase mb-0">Terrain Generator</h2>
-                <!-- Icon Divider -->
+              <div class="col-lg-11 skill-modal-panel">
+                <div class="skill-modal-header">
+                  <div class="modal-skill-icon"><i class="fas fa-vial"></i></div>
+                  <div class="skill-modal-title-wrap">
+                    <span class="pill">Skill</span>
+                    <h2 class="portfolio-modal-title text-secondary text-uppercase mb-0" id="QualitySkillModalLabel">Quality & Reliability</h2>
+                  </div>
+                </div>
                 <div class="divider-custom">
                   <div class="divider-custom-line"></div>
-                  <div class="divider-custom-icon">
-                    <i class="fas fa-times"></i>
-                  </div>
+                  <div class="divider-custom-icon"><i class="fas fa-times"></i></div>
                   <div class="divider-custom-line"></div>
                 </div>
-                
-                <!-- Carousel -->
-                <div id="terrainGenerator" class="carousel slide" data-ride="carousel">
-                  <ol class="carousel-indicators">
-                    <li data-target="#terrainGenerator" data-slide-to="0" class="active"></li>
-                    <li data-target="#terrainGenerator" data-slide-to="1"></li>
-                    <li data-target="#terrainGenerator" data-slide-to="2"></li>
-                    <li data-target="#terrainGenerator" data-slide-to="3"></li>
-                    <li data-target="#terrainGenerator" data-slide-to="4"></li>
-                    <li data-target="#terrainGenerator" data-slide-to="5"></li>
-                  </ol>
-                  <div class="carousel-inner">
-                    <div class="carousel-item active">
-                      <img class="img-fluid rounded mb-5" width="347" height="189" src="https://img.itch.zone/aW1hZ2UvMjIzNDc4LzEwNTUwNTIucG5n/347x500/ukKUP7.png">
-                    </div>
-                    <div class="carousel-item">
-                      <img class="img-fluid rounded mb-5" width="347" height="189" src="https://img.itch.zone/aW1hZ2UvMjIzNDc4LzEwNTUwNTEucG5n/347x500/ommYOp.png">
-                    </div>
-                    <div class="carousel-item">
-                      <img class="img-fluid rounded mb-5" width="347" height="189" src="https://img.itch.zone/aW1hZ2UvMjIzNDc4LzEwNTUwNDcucG5n/347x500/1DCBzp.png">
-                    </div>
-                    <div class="carousel-item">
-                      <img class="img-fluid rounded mb-5" width="347" height="189" src="https://img.itch.zone/aW1hZ2UvMjIzNDc4LzEwNTUwNDgucG5n/347x500/G%2F%2FeY7.png">
-                    </div>
-                    <div class="carousel-item">
-                      <img class="img-fluid rounded mb-5" width="347" height="189" src="https://img.itch.zone/aW1hZ2UvMjIzNDc4LzEwNTUwNDkucG5n/347x500/DO1r%2F%2B.png">
-                    </div>
-                    <div class="carousel-item">
-                      <img class="img-fluid rounded mb-5" width="347" height="189" src="https://img.itch.zone/aW1hZ2UvMjIzNDc4LzEwNTUwNTAucG5n/347x500/OMdv2o.png">
-                    </div>
-                  </div>
-                  <a class="carousel-control-prev" href="#terrainGenerator" role="button" data-slide="prev">
-                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                    <span class="sr-only">Previous</span>
-                  </a>
-                  <a class="carousel-control-next" href="#terrainGenerator" role="button" data-slide="next">
-                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                    <span class="sr-only">Next</span>
-                  </a>
-                </div>
+                <p class="modal-summary">Quality discipline grounded in production testing, debugging, and release safety.</p>
+                <ul class="experience-list">
+                  <li><strong>Lingolo:</strong> Validate frontend behavior and backend integration paths before release.</li>
+                  <li><strong>Epic Games:</strong> Executed daily test passes to maintain release quality at engine scale.</li>
+                  <li><strong>Process:</strong> Use targeted debugging and version-control checkpoints to reduce regressions.</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 
-                <!-- Portfolio Modal - Text -->
-                <p class="mb-5">
-                  The terrain generator is a tool I created before I started school at NAIT.
-                  It involves a simple UI which is used to generate terrain of many different sizes.
-                  There are functions to create layers in the heightmap resembling different levels of terrain.
-                  <br/>I implemented octaves to add diversity to the land scape and generate more unique terrain.
-                  <br/>The color picker allows for changing the color of each layer to discern the scale of each.
-                  <br/>The scale of the terrain can be adjusted allowing for more/less terrain.
-                  <br/><br/>
-                  Unfortunately, I lost access to the source code and can no longer work on it. I plan to develop a new version
-                  with better support and export functionality. For now it remains a relic of my early knowledge in procedural development.
-                  <br/><br/>
-                  You can check out the link to itch.io below! 
-                </p>
-                <button class="btn btn-primary" style="margin-bottom: 20px" 
-                    onclick="gotoSite('https://nocturnal-wisp.itch.io/terrain-generator')" 
-                    href="#" data-dismiss="modal">
+  <div class="portfolio-modal modal fade" id="ProductSkillModal" tabindex="-1" role="dialog" aria-labelledby="ProductSkillModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-xl" role="document">
+      <div class="modal-content">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true"><i class="fas fa-times"></i></span>
+        </button>
+        <div class="modal-body text-center">
+          <div class="container">
+            <div class="row justify-content-center">
+              <div class="col-lg-11 skill-modal-panel">
+                <div class="skill-modal-header">
+                  <div class="modal-skill-icon"><i class="fas fa-users"></i></div>
+                  <div class="skill-modal-title-wrap">
+                    <span class="pill">Skill</span>
+                    <h2 class="portfolio-modal-title text-secondary text-uppercase mb-0" id="ProductSkillModalLabel">Product Development</h2>
+                  </div>
+                </div>
+                <div class="divider-custom">
+                  <div class="divider-custom-line"></div>
+                  <div class="divider-custom-icon"><i class="fas fa-times"></i></div>
+                  <div class="divider-custom-line"></div>
+                </div>
+                <p class="modal-summary">Product-focused execution that balances scope, usability, and technical delivery.</p>
+                <ul class="experience-list">
+                  <li><strong>Lingolo:</strong> Ship features that improve onboarding and daily teacher workflows.</li>
+                  <li><strong>Seljax:</strong> Optimized 3D mesh performance from over 10,000 CPU cycles to under 1,000.</li>
+                  <li><strong>Execution:</strong> Prioritize high-impact work and iterate from user feedback.</li>
+                </ul>
+                <button class="btn btn-primary modal-action" onclick="gotoSite('https://playlingolo.com/teachers')">
                   <i class="fas fa-plus fa-fw"></i>
-                  Itch.io
-                </button>
-                <br/>
-                <button class="btn btn-primary" href="#" data-dismiss="modal">
-                  <i class="fas fa-times fa-fw"></i>
-                  Close Window
+                  View Product
                 </button>
               </div>
             </div>
@@ -899,485 +776,37 @@
     </div>
   </div>
 
-  <!-- Drython Modal -->
-  <div class="portfolio-modal modal fade" id="Drython_Modal" tabindex="-1" role="dialog" aria-labelledby="Drython_Modal_Label" aria-hidden="true">
+  <div class="portfolio-modal modal fade" id="CollaborationSkillModal" tabindex="-1" role="dialog" aria-labelledby="CollaborationSkillModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-xl" role="document">
       <div class="modal-content">
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">
-            <i class="fas fa-times"></i>
-          </span>
+          <span aria-hidden="true"><i class="fas fa-times"></i></span>
         </button>
         <div class="modal-body text-center">
           <div class="container">
             <div class="row justify-content-center">
-              <div class="col-lg-8">
-                <!-- Portfolio Modal - Image -->
-                <img class="img-fluid rounded mb-5" src="img/portfolio/Drython_Small.png" alt="Tynted Engine Logo">
-                <!-- Portfolio Modal - Title -->
-                <h2 class="portfolio-modal-title text-secondary text-uppercase mb-0">Drython Language</h2>
-                <!-- Icon Divider -->
+              <div class="col-lg-11 skill-modal-panel">
+                <div class="skill-modal-header">
+                  <div class="modal-skill-icon"><i class="fas fa-people-arrows"></i></div>
+                  <div class="skill-modal-title-wrap">
+                    <span class="pill">Skill</span>
+                    <h2 class="portfolio-modal-title text-secondary text-uppercase mb-0" id="CollaborationSkillModalLabel">Team Collaboration</h2>
+                  </div>
+                </div>
                 <div class="divider-custom">
                   <div class="divider-custom-line"></div>
-                  <div class="divider-custom-icon">
-                    <i class="fas fa-times"></i>
-                  </div>
+                  <div class="divider-custom-icon"><i class="fas fa-times"></i></div>
                   <div class="divider-custom-line"></div>
                 </div>
-
-                <!-- Portfolio Modal - Text -->
-                <p class="mb-5">
-                  Drython is an interpreted language developed in Rust as a systems language.
-                  <br/><br/>
-                  The main purpose of Drython is to act as a game scripting language with player build compiling.
-                  This involves using the drython parser during game editor usage, then converting that parsed
-                  content to a rust (rs) file to be compiled when the developer builds their game. This speeds
-                  up the developers workflow in editor, and speeds up the resulting game for players to enjoy!
-                  <br/><br/>
-                  Currently the parser is complete and can be viewed on the github. (Link below.)
-                  It has it's flaws, but the drython parser is my first language, so all these algorithms are very new and interesting to me.
-                  <br/><br/>
-                  The name is a play on of python, (which it shares a similar syntax) but reveals that the language is
-                  quite simple but very dynamic.
-                </p>
-                <button class="btn btn-primary" style="margin-bottom: 20px" 
-                    onclick="gotoSite('https://github.com/NocturnalWisp/Drython-Parser')" 
-                    href="#" data-dismiss="modal">
+                <p class="modal-summary">Cross-team collaboration with clear communication, mentoring, and consistent delivery.</p>
+                <ul class="experience-list">
+                  <li><strong>Workflow:</strong> Work effectively in agile cycles with scoped milestones and iterative review.</li>
+                  <li><strong>NAIT:</strong> Supported onboarding through documentation and code reviews.</li>
+                  <li><strong>Seljax:</strong> Mentored junior team members in core 3D operations and implementation patterns.</li>
+                </ul>
+                <button class="btn btn-primary modal-action" onclick="gotoSite('https://www.linkedin.com/in/t-j-h-322293100/')">
                   <i class="fas fa-plus fa-fw"></i>
-                  GitHub
-                </button>
-                <br/>
-                <button class="btn btn-primary" href="#" data-dismiss="modal">
-                  <i class="fas fa-times fa-fw"></i>
-                  Close Window
-                </button>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- Tynted Engine Modal -->
-  <div class="portfolio-modal modal fade" id="TyntedEngine_Modal" tabindex="-1" role="dialog" aria-labelledby="TyntedEngine_Modal_Label" aria-hidden="true">
-    <div class="modal-dialog modal-xl" role="document">
-      <div class="modal-content">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">
-            <i class="fas fa-times"></i>
-          </span>
-        </button>
-        <div class="modal-body text-center">
-          <div class="container">
-            <div class="row justify-content-center">
-              <div class="col-lg-8">
-                <!-- Portfolio Modal - Image -->
-                <img class="img-fluid rounded mb-5" src="img/portfolio/TyntedLogo_Small.png" alt="Tynted Engine Logo">
-                <!-- Portfolio Modal - Title -->
-                <h2 class="portfolio-modal-title text-secondary text-uppercase mb-0">Tynted Engine</h2>
-                <!-- Icon Divider -->
-                <div class="divider-custom">
-                  <div class="divider-custom-line"></div>
-                  <div class="divider-custom-icon">
-                    <i class="fas fa-times"></i>
-                  </div>
-                  <div class="divider-custom-line"></div>
-                </div>
-
-                <!-- Portfolio Modal - Text -->
-                <p class="mb-5">
-                  Tynted Engine is a game engine created originally to test the concept of the Entity Component
-                  System pattern. To showcase this, the engine has multiple features that are important to the 
-                  pattern. Tynted Engine was created in C# using the SFML C# binding.
-                  <ul style="text-align: left" title="Features">
-                    Features:
-                    <li>Entity Component System</li>
-                    <li>Observer Pattern Custom Events</li>
-                    <li>Scene (Level) File Loading</li>
-                    <li>Coroutines</li>
-                    <li>Engine Extensions</li>
-                  </ul>
-                  You can check out the github page for the code base, a documentation wiki, and engine releases.
-                  The wiki has the API, a reference to the ECS theory, and a reference to each core part of the 
-                  engine. It also has a short tutorial for creating a developer's first application in the engine.
-                </p>
-                <button class="btn btn-primary" style="margin-bottom: 20px" 
-                    onclick="gotoSite('https://github.com/NocturnalWisp/Tynted-Engine')" 
-                    href="#" data-dismiss="modal">
-                  <i class="fas fa-plus fa-fw"></i>
-                  GitHub
-                </button>
-                <br/>
-                <button class="btn btn-primary" href="#" data-dismiss="modal">
-                  <i class="fas fa-times fa-fw"></i>
-                  Close Window
-                </button>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- Black Matter Modal -->
-  <div class="portfolio-modal modal fade" id="BlackMatter_Modal" tabindex="-1" role="dialog" aria-labelledby="BlackMatter_Modal_Label" aria-hidden="true">
-    <div class="modal-dialog modal-xl" role="document">
-      <div class="modal-content">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">
-            <i class="fas fa-times"></i>
-          </span>
-        </button>
-        <div class="modal-body text-center">
-          <div class="container">
-            <div class="row justify-content-center">
-              <div class="col-lg-8">
-                <!-- Portfolio Modal - Title -->
-                <h2 class="portfolio-modal-title text-secondary text-uppercase mb-0">Black Matter</h2>
-                <!-- Icon Divider -->
-                <div class="divider-custom">
-                  <div class="divider-custom-line"></div>
-                  <div class="divider-custom-icon">
-                    <i class="fas fa-times"></i>
-                  </div>
-                  <div class="divider-custom-line"></div>
-                </div>
-                
-                <!-- Carousel -->
-                <div id="blackMatterCarousel" class="carousel slide" data-ride="carousel">
-                  <ol class="carousel-indicators">
-                    <li data-target="#blackMatterCarousel" data-slide-to="0" class="active"></li>
-                    <li data-target="#blackMatterCarousel" data-slide-to="1"></li>
-                    <li data-target="#blackMatterCarousel" data-slide-to="2"></li>
-                    <li data-target="#blackMatterCarousel" data-slide-to="3"></li>
-                  </ol>
-                  <div class="carousel-inner">
-                    <div class="carousel-item active">
-                      <img class="img-fluid rounded mb-5" src="https://img.itch.zone/aW1hZ2UvMTU1MjQ0Mi85MTA1NjIwLnBuZw==/347x500/hTe8dv.png" alt="First slide">
-                    </div>
-                    <div class="carousel-item">
-                      <img class="img-fluid rounded mb-5" src="https://img.itch.zone/aW1hZ2UvMTU1MjQ0Mi85MTA1NjI5LnBuZw==/347x500/lYqr0u.png" alt="Second slide">
-                    </div>
-                    <div class="carousel-item">
-                      <img class="img-fluid rounded mb-5" src="https://img.itch.zone/aW1hZ2UvMTU1MjQ0Mi85MTA1NjMxLnBuZw==/347x500/XOsgxC.png" alt="Third slide">
-                    </div>
-                    <div class="carousel-item">
-                      <img class="img-fluid rounded mb-5" src="https://img.itch.zone/aW1hZ2UvMTU1MjQ0Mi85MTA1NjM4LnBuZw==/347x500/HSuKR2.png" alt="Fourth slide">
-                    </div>
-                  </div>
-                  <a class="carousel-control-prev" href="#blackMatterCarousel" role="button" data-slide="prev">
-                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                    <span class="sr-only">Previous</span>
-                  </a>
-                  <a class="carousel-control-next" href="#blackMatterCarousel" role="button" data-slide="next">
-                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                    <span class="sr-only">Next</span>
-                  </a>
-                </div>
-
-                <!-- Portfolio Modal - Text -->
-                <p class="mb-5">
-                  Black Matter was my successful project in creating polished mechanics during a game jam.
-                  <br/>
-                  The game is inspired from the human brain. It encourages the player to build connections between neurons.
-                  It features viruses that try to destroy those connections, and helpers to help fix and create more of them.
-                  <br/>
-                  Black Matter lacks a tutorial, but instead focuses on introducing mechanics as the player continues
-                  to engage with the game.
-                  <br/><br/>
-                  Black Matter is hosted on itch.io found at the link below.
-                </p>
-                <button class="btn btn-primary" style="margin-bottom: 20px" 
-                    onclick="gotoSite('https://nocturnal-wisp.itch.io/black-matter')" 
-                    href="#" data-dismiss="modal">
-                  <i class="fas fa-plus fa-fw"></i>
-                  Itch.io
-                </button>
-                <br/>
-                <button class="btn btn-primary" href="#" data-dismiss="modal">
-                  <i class="fas fa-times fa-fw"></i>
-                  Close Window
-                </button>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- Murder Bunnies Modal -->
-  <div class="portfolio-modal modal fade" id="MurderBunnies_Modal" tabindex="-1" role="dialog" aria-labelledby="MurderBunnies_Modal_Label" aria-hidden="true">
-    <div class="modal-dialog modal-xl" role="document">
-      <div class="modal-content">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">
-            <i class="fas fa-times"></i>
-          </span>
-        </button>
-        <div class="modal-body text-center">
-          <div class="container">
-            <div class="row justify-content-center">
-              <div class="col-lg-8">
-                <!-- Portfolio Modal - Image -->
-                <img class="img-fluid rounded mb-5" src="img/portfolio/MurderBunnies_Small.png" alt="Tynted Engine Logo">
-                <!-- Portfolio Modal - Title -->
-                <h2 class="portfolio-modal-title text-secondary text-uppercase mb-0">Murder Bunnies</h2>
-                <!-- Icon Divider -->
-                <div class="divider-custom">
-                  <div class="divider-custom-line"></div>
-                  <div class="divider-custom-icon">
-                    <i class="fas fa-times"></i>
-                  </div>
-                  <div class="divider-custom-line"></div>
-                </div>
-                
-                <!-- Carousel -->
-                <div id="muderBunniesCarousel" class="carousel slide" data-ride="carousel">
-                  <ol class="carousel-indicators">
-                    <li data-target="#muderBunniesCarousel" data-slide-to="0" class="active"></li>
-                    <li data-target="#muderBunniesCarousel" data-slide-to="1"></li>
-                    <li data-target="#muderBunniesCarousel" data-slide-to="2"></li>
-                    <li data-target="#muderBunniesCarousel" data-slide-to="3"></li>
-                  </ol>
-                  <div class="carousel-inner">
-                    <div class="carousel-item active">
-                      <img class="img-fluid rounded mb-5" src="https://img.itch.zone/aW1hZ2UvNjQxMzcyLzM0MzM1OTQucG5n/347x500/cNNAVk.png" alt="First slide">
-                    </div>
-                    <div class="carousel-item">
-                      <img class="img-fluid rounded mb-5" src="https://img.itch.zone/aW1hZ2UvNjQxMzcyLzM0MzM1OTEucG5n/347x500/WseCKB.png" alt="Second slide">
-                    </div>
-                    <div class="carousel-item">
-                      <img class="img-fluid rounded mb-5" src="https://img.itch.zone/aW1hZ2UvNjQxMzcyLzM0MzM1OTIucG5n/347x500/hSjPOK.png" alt="Third slide">
-                    </div>
-                    <div class="carousel-item">
-                      <img class="img-fluid rounded mb-5" src="https://img.itch.zone/aW1hZ2UvNjQxMzcyLzM0MzM1OTMucG5n/347x500/qB2arX.png" alt="Fourth slide">
-                    </div>
-                  </div>
-                  <a class="carousel-control-prev" href="#muderBunniesCarousel" role="button" data-slide="prev">
-                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                    <span class="sr-only">Previous</span>
-                  </a>
-                  <a class="carousel-control-next" href="#muderBunniesCarousel" role="button" data-slide="next">
-                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                    <span class="sr-only">Next</span>
-                  </a>
-                </div>
-
-                <!-- Portfolio Modal - Text -->
-                <p class="mb-5">
-                  Murder Bunnies is a small game intended to showcase a more complete publishable game. The core aspects are
-                  based on a 4 player system. Created in Unity C# and published to Itch.io. Much could be improved to make
-                  the game more exciting for fewer players, but the mechanics are implemented. Based off the old arcade game "Joust."
-                  <ul style="text-align: left" title="Features">
-                    Features:
-                    <li>Controller Support</li>
-                    <li>Couch Multiplayer</li>
-                    <li>Diverse Character Movement</li>
-                    <li>Exciting Gameplay</li>
-                  </ul>
-                  Murder Bunnies is hosted on itch.io found at the link below.
-                </p>
-                <button class="btn btn-primary" style="margin-bottom: 20px" 
-                    onclick="gotoSite('https://nocturnal-wisp.itch.io/murder-bunnies')" 
-                    href="#" data-dismiss="modal">
-                  <i class="fas fa-plus fa-fw"></i>
-                  Itch.io
-                </button>
-                <br/>
-                <button class="btn btn-primary" href="#" data-dismiss="modal">
-                  <i class="fas fa-times fa-fw"></i>
-                  Close Window
-                </button>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- Pie Rise Modal -->
-  <div class="portfolio-modal modal fade" id="PieRise_Modal" tabindex="-1" role="dialog" aria-labelledby="PieRise_Modal_Label" aria-hidden="true">
-    <div class="modal-dialog modal-xl" role="document">
-      <div class="modal-content">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">
-            <i class="fas fa-times"></i>
-          </span>
-        </button>
-        <div class="modal-body text-center">
-          <div class="container">
-            <div class="row justify-content-center">
-              <div class="col-lg-8">
-                <!-- Portfolio Modal - Title -->
-                <h2 class="portfolio-modal-title text-secondary text-uppercase mb-0">Pie Rise</h2>
-                <!-- Icon Divider -->
-                <div class="divider-custom">
-                  <div class="divider-custom-line"></div>
-                  <div class="divider-custom-icon">
-                    <i class="fas fa-times"></i>
-                  </div>
-                  <div class="divider-custom-line"></div>
-                </div>
-                
-                <!-- Carousel -->
-                <div id="pireRiseCarousel" class="carousel slide" data-ride="carousel">
-                  <ol class="carousel-indicators">
-                    <li data-target="#pireRiseCarousel" data-slide-to="0" class="active"></li>
-                    <li data-target="#pireRiseCarousel" data-slide-to="1"></li>
-                    <li data-target="#pireRiseCarousel" data-slide-to="2"></li>
-                    <li data-target="#pireRiseCarousel" data-slide-to="3"></li>
-                    <li data-target="#pireRiseCarousel" data-slide-to="4"></li>
-                  </ol>
-                  <div class="carousel-inner">
-                    <div class="carousel-item active">
-                      <img class="img-fluid rounded mb-5" src="https://img.itch.zone/aW1hZ2UvMzYyMTE1LzE4MDk3ODUucG5n/347x500/XpTbjO.png" alt="First slide">
-                    </div>
-                    <div class="carousel-item">
-                      <img class="img-fluid rounded mb-5" src="https://img.itch.zone/aW1hZ2UvMzYyMTE1LzE4MDk3ODQucG5n/347x500/AGxYbk.png" alt="Second slide">
-                    </div>
-                    <div class="carousel-item">
-                      <img class="img-fluid rounded mb-5" src="https://img.itch.zone/aW1hZ2UvMzYyMTE1LzE4MDk3ODIucG5n/347x500/spc47t.png" alt="Third slide">
-                    </div>
-                    <div class="carousel-item">
-                      <img class="img-fluid rounded mb-5" src="https://img.itch.zone/aW1hZ2UvMzYyMTE1LzE4MDk3ODAucG5n/347x500/2WiutL.png" alt="Fourth slide">
-                    </div>
-                    <div class="carousel-item">
-                      <img class="img-fluid rounded mb-5" src="https://img.itch.zone/aW1hZ2UvMzYyMTE1LzE4MDk3ODMucG5n/347x500/DPVF6T.png" alt="Fifth slide">
-                    </div>
-                  </div>
-                  <a class="carousel-control-prev" href="#pireRiseCarousel" role="button" data-slide="prev">
-                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                    <span class="sr-only">Previous</span>
-                  </a>
-                  <a class="carousel-control-next" href="#pireRiseCarousel" role="button" data-slide="next">
-                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                    <span class="sr-only">Next</span>
-                  </a>
-                </div>
-
-                <!-- Portfolio Modal - Text -->
-                <p class="mb-5">
-                  Pie Rise is a game I developed with a group of friends during the Global Game Jam in 2019.
-                  The game was built with android devices in mind and involves tapping on the pies in the windows
-                  when they are ready to come off the ledge. If they aren't tapped in time, they go bad and the
-                  hungry raccoon comes to eat them!
-                  <br/>
-                  The floors slowly build up and the player will need to manage more and more pies.
-                  <br/><br/>
-                  I worked on much of the programming and handled the publishing and finishing touches before the deadline.
-                  The aging pies, raccoon interactions, and speach bubbles appearing were where I focused most of my time.
-                  <br/><br/>
-                  Pie Rise is hosted on itch.io found at the link below.
-                </p>
-                <button class="btn btn-primary" style="margin-bottom: 20px" 
-                    onclick="gotoSite('https://nocturnal-wisp.itch.io/pie-rise')" 
-                    href="#" data-dismiss="modal">
-                  <i class="fas fa-plus fa-fw"></i>
-                  Itch.io
-                </button>
-                <br/>
-                <button class="btn btn-primary" href="#" data-dismiss="modal">
-                  <i class="fas fa-times fa-fw"></i>
-                  Close Window
-                </button>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- AI Dungeon Modal -->
-  <div class="portfolio-modal modal fade" id="AIDungeon_Modal" tabindex="-1" role="dialog" aria-labelledby="AIDungeon_Modal_Label" aria-hidden="true">
-    <div class="modal-dialog modal-xl" role="document">
-      <div class="modal-content">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">
-            <i class="fas fa-times"></i>
-          </span>
-        </button>
-        <div class="modal-body text-center">
-          <div class="container">
-            <div class="row justify-content-center">
-              <div class="col-lg-8">
-                <!-- Portfolio Modal - Image -->
-                <img class="img-fluid rounded mb-5" src="img/portfolio/AIDungeon_Small.png" alt="AI Dungeon Icon">
-                <!-- Portfolio Modal - Title -->
-                <h2 class="portfolio-modal-title text-secondary text-uppercase mb-0">AI Dungeon</h2>
-                <!-- Icon Divider -->
-                <div class="divider-custom">
-                  <div class="divider-custom-line"></div>
-                  <div class="divider-custom-icon">
-                    <i class="fas fa-times"></i>
-                  </div>
-                  <div class="divider-custom-line"></div>
-                </div>
-                
-                <!-- Portfolio Modal - Text -->
-                <p class="mb-5">
-                  AI dungeon is the conglomeration of a couple of projects previously worked on. It can be 
-                  classified as a simulation.
-                  The simulation offers 3 unique types of AI;<br/>procedural dungeon generation, path node 
-                  generation, and character state machines. 
-                  <br/><br/>
-                  <span style="color:rgb(255, 85, 85)"><b>
-                    There is a build for Android VR, see below for details.
-                  </b></span> 
-                </p>
-                <h4 class="text-secondary text-uppercase mb-0">Dungeon Generation</h4>
-                <p class="mb-5">
-                  The dungeon generation works in 6 steps which are:
-                  <ol style="text-align: left">
-                    <li>Building the critical path</li>
-                    <li>Building rooms</li> 
-                    <li>Expanding rooms</li>
-                    <li>Creating doors</li>
-                    <li>Joining rooms</li>
-                    <li>Building the dungeon</li>
-                  </ol>
-                  Each of these steps 
-                  are laid out in the AIDungeonDiagram.jpg file on the github source page.
-                </p>
-                <h4 class="text-secondary text-uppercase mb-0">Path Nodes</h4>
-                <br/>
-                <p class="mb-5">
-                  Path Node Generation works by first placing path nodes on each dungeon floor tile. The generator
-                  then creates connections based on one node next to another. Connections that would connect if
-                  there was no door in between the two create a closed door connection. This connection is
-                  then paired with the door to allow for it to open and close. Each connection can be traveled 
-                  across by the AI characters. This system has no connection to the state machine, but the state
-                  machine accesses it.
-                </p>
-                <h4 class="text-secondary text-uppercase mb-0">State Machine</h4>
-                <br/>
-                <p class="mb-5">
-                  The state machine for this project is fairly basic, but it demonstrates the important aspect
-                  of having a character respond to external stimuli. The player flees whenever encountering an
-                  enemy. The enemies give chase when they encounter a player. When the characters are not fleeing 
-                  or following, they chose a random pathnode and attempt to travel to it. The state machine
-                  implementation uses the A star algorithm to navigate the path nodes.
-                  <br/><br/>
-                  <b>
-                  You can find a build of the project in the releases section of the github source page.
-                  If you have an Android device with a VR headset or google cardboard, there is an APK build 
-                  that supports it also under the releases page.
-                  </b>
-                </p>
-                <button class="btn btn-primary" style="margin-bottom: 20px" 
-                    onclick="gotoSite('https://github.com/NocturnalWisp/AIDungeonPathing')" 
-                    href="#" data-dismiss="modal">
-                  <i class="fas fa-plus fa-fw"></i>
-                  GitHub
-                </button>
-                <br/>
-                <button class="btn btn-primary" href="#" data-dismiss="modal">
-                  <i class="fas fa-plus fa-fw"></i>
-                  Close Window
+                  Connect on LinkedIn
                 </button>
               </div>
             </div>
