@@ -1,8 +1,8 @@
 function renderSkillDetail(skill) {
   const itemsHtml = skill.items.map(item => `<li>${item}</li>`).join('');
   const actionHtml = skill.action
-    ? `<button class="btn btn-primary modal-action" onclick="gotoSite('${skill.action.url}')">
-         <i class="fas fa-plus fa-fw"></i>
+    ? `<button class="button button-primary detail-action" onclick="gotoSite('${skill.action.url}')">
+         +
          ${skill.action.label}
        </button>`
     : '';
@@ -10,14 +10,14 @@ function renderSkillDetail(skill) {
   return `
     <div class="skill-detail-panel">
       <div class="skill-detail-header">
-        <div class="modal-skill-icon"><i class="${skill.icon}"></i></div>
-        <div class="skill-modal-title-wrap">
-          <span class="pill">Skill</span>
-          <h2 class="portfolio-modal-title text-secondary text-uppercase mb-0">${skill.title}</h2>
+        <div class="detail-icon"><i class="${skill.icon}"></i></div>
+        <div class="detail-title-wrap">
+          <span class="badge">Skill</span>
+          <h2 class="detail-title">${skill.title}</h2>
         </div>
       </div>
-      <p class="modal-summary">${skill.summary}</p>
-      <ul class="experience-list">${itemsHtml}</ul>
+      <p class="detail-summary">${skill.summary}</p>
+      <ul class="detail-list">${itemsHtml}</ul>
       ${actionHtml}
     </div>
   `;

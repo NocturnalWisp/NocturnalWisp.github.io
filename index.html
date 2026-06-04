@@ -3,339 +3,162 @@
 
 <head>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="description" content="Portfolio for Thomas Helm">
   <meta name="author" content="Thomas Helm">
-
   <title>Thomas' Portfolio</title>
-  <!--TODO: add website icon-->
-
-  <!-- Custom fonts for this theme -->
   <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
-  <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
-  <link href="https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic" rel="stylesheet" type="text/css">
-
-  <!-- Theme CSS -->
-  <link href="css/freelancer.min.css" rel="stylesheet">
   <link href="css/styles.css" rel="stylesheet">
-
   <link rel="icon" href="img/ProfileImage.JPG">
-
-  <script>
-    function gotoSite(site)
-    {
-      window.open(site);
-    }
-
-    var yearDifMs = Date.now() - new Date(2013, 1, 1);
-    var yearDate = new Date(yearDifMs);
-    var years = Math.abs(yearDate.getUTCFullYear() - 1970);
-
-    var currentYear = Math.abs(new Date().getFullYear());
-
-    window.onload = function()
-    {
-      document.getElementById("years").innerHTML=years;
-      document.getElementById("currentYear").innerHTML=currentYear
-    }
-  </script>
-
-  <!-- Global site tag (gtag.js) - Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-174021837-1"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-
-    gtag('config', 'UA-174021837-1');
-  </script>
-
+  <script src="js/skill-details.js"></script>
+  <script src="js/site.js"></script>
 </head>
 
 <body id="page-top">
-
-  <!-- Navigation -->
-  <nav class="navbar navbar-expand-lg text-uppercase fixed-top" id="mainNav">
-    <div class="container">
-      <a class="navbar-brand js-scroll-trigger" href="#page-top">Thomas Helm</a>
-      <button class="navbar-toggler navbar-toggler-right text-uppercase font-weight-bold bg-primary text-white rounded" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-        Menu
-        <i class="fas fa-bars"></i>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarResponsive">
-        <ul class="navbar-nav ml-auto">
-          <li class="nav-item mx-0 mx-lg-1">
-            <a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="#recent-project">Highlights</a>
-          </li>
-          <li class="nav-item mx-0 mx-lg-1">
-            <a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="#skills">Skills</a>
-          </li>
-          <li class="nav-item mx-0 mx-lg-1">
-            <a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="#about">About</a>
-          </li>
-        </ul>
-      </div>
-    </div>
-  </nav>
-
-  <!-- Masthead -->
-  <header class="masthead text-white text-center">
-    <div class="container d-flex align-items-center flex-column">
-      <img class="masthead-avatar mb-5" src="img/ProfileImage.JPG" alt="Thomas Picture">
-      <h1 class="masthead-heading text-uppercase mb-0">Thomas Helm</h1>
-
-      <p class="masthead-subheading font-weight-light mb-0" aria-label="Software, Full Stack, Tools">
-        <span class="masthead-side masthead-side-left">
-          <span class="masthead-qualifier">Software</span>
-          <span class="masthead-separator" aria-hidden="true">&bull;</span>
-        </span>
-        <span class="masthead-primary">Full Stack</span>
-        <span class="masthead-side masthead-side-right">
-          <span class="masthead-separator" aria-hidden="true">&bull;</span>
-          <span class="masthead-qualifier">Tools</span>
-        </span>
-      </p>
+  <header class="site-header" id="mainNav">
+    <div class="site-shell">
+      <p class="site-title">Thomas Helm</p>
     </div>
   </header>
 
-  <!-- Recent Project -->
-  <section class="page-section" id="recent-project">
-    <div class="container">
-      <h2 class="page-section-heading text-center text-uppercase text-secondary mb-0">Highlights</h2>
-
-      <div class="row justify-content-center">
-        <div class="col-lg-10">
-          <div class="skill-card text-left" style="cursor: default;">
-            <span class="pill">Featured</span>
-            <h3 style="font-size: 1.6rem; margin-bottom: 0.75rem;">Lingolo</h3>
-            <p style="font-size: 1rem; margin-bottom: 0.85rem;">
-              Production teachers portal and student game for Lingolo focused on onboarding, classroom workflows, and emmediate progress feedback.
-            </p>
-            <p style="font-size: 1rem; margin-bottom: 1rem;">
-              <strong>Stack:</strong> React, Chakra UI, Firebase
-            </p>
-            <ul class="experience-list" style="margin-top: 0;">
-              <li><strong>Frontend:</strong> Built responsive React + Chakra UI flows for teacher dashboard and classroom engagement.</li>
-              <li><strong>Backend:</strong> Structured Firebase reads/writes and added admin workflows with Firebase Functions.</li>
-              <li><strong>Impact:</strong> Reduced outgoing bandwidth calls from 10 MB to 125 KB.</li>
-            </ul>
-            <a class="btn btn-primary" href="https://playlingolo.com/teachers" target="_blank" rel="noopener noreferrer">
-              <img src="img/LingoloIcon.ico" alt="Lingolo icon" class="mr-2 live-work-icon">
-              Visit Project
-            </a>
-          </div>
-        </div>
+  <main>
+    <section class="hero" aria-labelledby="hero-title">
+      <div class="site-shell hero-content">
+        <img class="hero-avatar" src="img/ProfileImage.JPG" alt="Thomas Picture">
+        <h1 id="hero-title" class="hero-name">Thomas Helm</h1>
+        <p class="hero-subtitle" aria-label="Software, Full Stack, Tools">
+          <span class="hero-subtle">Software</span>
+          <span class="hero-dot" aria-hidden="true">•</span>
+          <span class="hero-strong">Full Stack</span>
+          <span class="hero-dot" aria-hidden="true">•</span>
+          <span class="hero-subtle">Tools</span>
+        </p>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- Skills Section -->
-  <section class="page-section skill-section" id="skills">
-    <div class="container">
-      <h2 class="page-section-heading text-center text-uppercase text-secondary mb-0">Skills</h2>
-      <div class="skills-row">
-        <div class="skills-col-cards">
-          <div class="skill-grid">
-            <button class="skill-card selected" data-skill="frontend" aria-label="Show frontend engineering skill details" aria-pressed="true">
-              <i class="fab fa-react"></i>
+    <section class="section" id="recent-project" aria-labelledby="highlights-title">
+      <div class="site-shell narrow-shell">
+        <h2 id="highlights-title" class="section-title">Highlights</h2>
+        <article class="feature-card" aria-label="Featured project Lingolo">
+          <span class="badge">Featured</span>
+          <h3 class="feature-title">Lingolo</h3>
+          <p>
+            Production teachers portal and student game for Lingolo focused on onboarding, classroom workflows, and
+            emmediate progress feedback.
+          </p>
+          <p><strong>Stack:</strong> React, Chakra UI, Firebase</p>
+          <ul class="detail-list">
+            <li><strong>Frontend:</strong> Built responsive React + Chakra UI flows for teacher dashboard and classroom engagement.</li>
+            <li><strong>Backend:</strong> Structured Firebase reads/writes and added admin workflows with Firebase Functions.</li>
+            <li><strong>Impact:</strong> Reduced outgoing bandwidth calls from 10 MB to 125 KB.</li>
+          </ul>
+          <a class="button button-primary" href="https://playlingolo.com/teachers" target="_blank" rel="noopener noreferrer">
+            <img src="img/LingoloIcon.ico" alt="Lingolo icon" class="button-icon">
+            Visit Project
+          </a>
+        </article>
+      </div>
+    </section>
+
+    <section class="section" id="skills" aria-labelledby="skills-title">
+      <div class="site-shell">
+        <h2 id="skills-title" class="section-title">Skills</h2>
+
+        <div class="skills-layout">
+          <div class="skills-grid" role="list" aria-label="Skills list">
+            <button class="skill-option selected" data-skill="frontend" aria-label="Show frontend engineering skill details" aria-pressed="true" type="button">
+              <i class="skill-glyph fab fa-react" aria-hidden="true"></i>
               <h3>Frontend Engineering</h3>
               <p>React interfaces with accessible component systems.</p>
             </button>
-            <button class="skill-card" data-skill="backend" aria-label="Show backend engineering skill details" aria-pressed="false">
-              <i class="fas fa-server"></i>
-              <h3>Backend & API Design</h3>
+            <button class="skill-option" data-skill="backend" aria-label="Show backend engineering skill details" aria-pressed="false" type="button">
+              <i class="skill-glyph fas fa-server" aria-hidden="true"></i>
+              <h3>Backend &amp; API Design</h3>
               <p>Cloud functions, API structure, and data flow design.</p>
             </button>
-            <button class="skill-card" data-skill="firebase" aria-label="Show Firebase skill details" aria-pressed="false">
-              <i class="fas fa-database"></i>
+            <button class="skill-option" data-skill="firebase" aria-label="Show Firebase skill details" aria-pressed="false" type="button">
+              <i class="skill-glyph fas fa-database" aria-hidden="true"></i>
               <h3>Firebase Architecture</h3>
               <p>Auth, data modeling, and production deployment workflows.</p>
             </button>
-            <button class="skill-card" data-skill="quality" aria-label="Show quality and reliability skill details" aria-pressed="false">
-              <i class="fas fa-vial"></i>
-              <h3>Quality & Reliability</h3>
+            <button class="skill-option" data-skill="quality" aria-label="Show quality and reliability skill details" aria-pressed="false" type="button">
+              <i class="skill-glyph fas fa-vial" aria-hidden="true"></i>
+              <h3>Quality &amp; Reliability</h3>
               <p>Testing, debugging, and release confidence in production.</p>
             </button>
-            <button class="skill-card" data-skill="product" aria-label="Show product development skill details" aria-pressed="false">
-              <i class="fas fa-box"></i>
+            <button class="skill-option" data-skill="product" aria-label="Show product development skill details" aria-pressed="false" type="button">
+              <i class="skill-glyph fas fa-box" aria-hidden="true"></i>
               <h3>Product Development</h3>
               <p>Build loops informed by real user and teacher feedback.</p>
             </button>
-            <button class="skill-card" data-skill="collaboration" aria-label="Show collaboration skill details" aria-pressed="false">
-              <i class="fas fa-users"></i>
+            <button class="skill-option" data-skill="collaboration" aria-label="Show collaboration skill details" aria-pressed="false" type="button">
+              <i class="skill-glyph fas fa-users" aria-hidden="true"></i>
               <h3>Team Collaboration</h3>
               <p>Agile delivery, documentation, and iterative refinement.</p>
             </button>
           </div>
+
+          <aside class="skills-panel" aria-live="polite">
+            <div id="skill-details-panel"></div>
+          </aside>
         </div>
-        <div class="skills-col-details">
-          <div id="skill-details-panel">
-            <!-- Details will be injected here -->
-          </div>
+
+        <div id="skills-mobile-details" class="skills-mobile-details" aria-live="polite"></div>
+      </div>
+    </section>
+
+    <section class="section live-work" id="links" aria-labelledby="live-work-title">
+      <div class="site-shell center-content">
+        <h2 id="live-work-title" class="section-title section-title-light">Live Work</h2>
+        <p class="section-intro">Browse production apps and repositories.</p>
+        <div class="button-row">
+          <a class="button button-ghost" href="https://playlingolo.com/teachers" target="_blank" rel="noopener noreferrer">
+            <img src="img/LingoloIcon.ico" alt="Lingolo icon" class="button-icon">
+            Lingolo
+          </a>
+          <a class="button button-ghost" href="https://github.com/NocturnalWisp" target="_blank" rel="noopener noreferrer">
+            <i class="fab fa-github" aria-hidden="true"></i>
+            GitHub
+          </a>
         </div>
       </div>
-      <div id="skills-mobile-details" class="skills-mobile-details" aria-live="polite"></div>
-    </div>
-  </section>
+    </section>
 
-  <!-- Featured Links -->
-  <section class="page-section text-white skill-highlight" id="links">
-    <div class="container text-center">
-      <h2 class="page-section-heading text-center text-uppercase text-white mb-0">Live Work</h2>
-
-      <br/>
-
-      <p class="lead mb-5">Browse production apps and repositories.</p>
-
-      <a class="btn btn-xl btn-outline-light mx-2 mb-3" href="https://playlingolo.com/teachers" target="_blank" rel="noopener noreferrer">
-        <img src="img/LingoloIcon.ico" alt="Lingolo icon" class="mr-2 live-work-icon">
-        Lingolo
-      </a>
-
-      <a class="btn btn-xl btn-outline-light mx-2 mb-3" href="https://github.com/NocturnalWisp" target="_blank" rel="noopener noreferrer">
-        <i class="fab fa-github mr-2"></i>
-        GitHub
-      </a>
-    </div>
-  </section>
-
-  <!-- About Section -->
-  <section class="page-section" id="about">
-    <div class="container">
-      <h2 class="page-section-heading text-center text-uppercase text-secondary">About</h2>
-
-      <br/>
-
-      <div class="row">
-        <div class="col-lg-5 ml-auto">
-          <p class="lead">
-            Thomas (T.J.) Helm is a full stack developer with <span id="years"></span> years building practical software products across passion projects, product teams, and large scale systems.
-            Current focus: React frontends, Firebase backed services, and building software I am proud to use.
+    <section class="section" id="about" aria-labelledby="about-title">
+      <div class="site-shell narrow-shell">
+        <h2 id="about-title" class="section-title">About</h2>
+        <div class="about-grid">
+          <p class="body-copy">
+            Thomas (T.J.) Helm is a full stack developer with <span id="years"></span> years building practical
+            software products across passion projects, product teams, and large scale systems. Current focus: React
+            frontends, Firebase backed services, and building software I am proud to use.
           </p>
-        </div>
-        <div class="col-lg-5 mr-auto">
-          <p class="lead">
+          <p class="body-copy">
             Experience spans frontend systems, backend integration, performance optimization, and release quality.
             Available for collaboration, contracts, and full-time opportunities.
           </p>
         </div>
       </div>
-    </div>
-  </section>
+    </section>
+  </main>
 
-  <!-- Footer -->
-  <footer class="footer text-center text-white">
-    <div class="container">
-      <div class="col-lg-6 mx-auto mb-5 mb-lg-0">
-        <h4 class="text-uppercase mb-4">Contact</h4>
-        <a class="btn btn-outline-light btn-social mx-1" href="mailto:helmthomas2000@gmail.com" target="_blank" rel="noopener noreferrer">
-          <i class="far fa-fw fa-envelope"></i>
+  <footer class="site-footer" aria-labelledby="contact-title">
+    <div class="site-shell center-content">
+      <h2 id="contact-title" class="footer-heading">Contact</h2>
+      <div class="social-row">
+        <a class="button button-social" href="mailto:helmthomas2000@gmail.com" target="_blank" rel="noopener noreferrer" aria-label="Email">
+          <i class="far fa-envelope" aria-hidden="true"></i>
         </a>
-        <a class="btn btn-outline-light btn-social mx-1" href="https://github.com/NocturnalWisp" target="_blank" rel="noopener noreferrer">
-          <i class="fab fa-fw fa-github"></i>
+        <a class="button button-social" href="https://github.com/NocturnalWisp" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
+          <i class="fab fa-github" aria-hidden="true"></i>
         </a>
-        <a class="btn btn-outline-light btn-social mx-1" href="https://www.linkedin.com/in/thomas-helm-dev/" target="_blank" rel="noopener noreferrer">
-          <i class="fab fa-fw fa-linkedin-in"></i>
+        <a class="button button-social" href="https://www.linkedin.com/in/thomas-helm-dev/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+          <i class="fab fa-linkedin-in" aria-hidden="true"></i>
         </a>
       </div>
+      <small>© Thomas Helm <span id="currentYear"></span></small>
     </div>
   </footer>
-
-  <!-- Copyright Section -->
-  <section class="copyright py-4 text-center text-white">
-    <div class="container">
-      <small>&copy; Thomas Helm <span id="currentYear"></span></small>
-    </div>
-  </section>
-
-  <!-- Scroll to Top Button -->
-  <div class="scroll-to-top d-lg-none position-fixed">
-    <a class="js-scroll-trigger d-block text-center text-white rounded" href="#page-top">
-      <i class="fa fa-chevron-up"></i>
-    </a>
-  </div>
-
-
-
-  <!-- Bootstrap core JavaScript -->
-  <script src="vendor/jquery/jquery.min.js"></script>
-  <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-
-  <!-- Plugin JavaScript -->
-  <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
-
-  <!-- Custom scripts for this template -->
-  <script src="js/skill-details.js"></script>
-  <script src="js/freelancer.min.js"></script>
-
-  <script>
-    // Load skill details from external JS data source
-    function loadSkillDetail(skill) {
-      const panel = document.getElementById('skill-details-panel');
-      if (!window.skillDetails || !window.skillDetails[skill]) {
-        panel.innerHTML = '<p class="modal-summary mb-0">Skill details are currently unavailable.</p>';
-        return;
-      }
-      panel.innerHTML = window.skillDetails[skill];
-    }
-
-    function renderAllSkillDetails(skillKeys) {
-      const mobileContainer = document.getElementById('skills-mobile-details');
-      if (!mobileContainer) {
-        return;
-      }
-
-      if (!window.skillDetails) {
-        mobileContainer.innerHTML = '';
-        return;
-      }
-
-      mobileContainer.innerHTML = skillKeys.map(function(skill) {
-        return window.skillDetails[skill] || '';
-      }).join('');
-    }
-
-    document.addEventListener('DOMContentLoaded', function() {
-      const cards = document.querySelectorAll('.skill-card');
-      const mobileContainer = document.getElementById('skills-mobile-details');
-
-      if (!cards.length) {
-        return;
-      }
-
-      const skillKeys = Array.prototype.map.call(cards, function(card) {
-        return card.getAttribute('data-skill');
-      });
-
-      // Highlight selected card
-      function selectCard(card) {
-        cards.forEach(btn => {
-          btn.classList.remove('selected');
-          btn.setAttribute('aria-pressed', 'false');
-        });
-        card.classList.add('selected');
-        card.setAttribute('aria-pressed', 'true');
-      }
-
-      cards.forEach(btn => {
-        btn.addEventListener('click', function() {
-          const skill = this.getAttribute('data-skill');
-          loadSkillDetail(skill);
-          selectCard(this);
-        });
-      });
-
-      if (mobileContainer) {
-        renderAllSkillDetails(skillKeys);
-      }
-
-      const firstCard = document.querySelector('.skill-card.selected') || cards[0];
-      const firstSkill = firstCard.getAttribute('data-skill');
-      loadSkillDetail(firstSkill);
-      selectCard(firstCard);
-    });
-  </script>
-
 </body>
-
+    <script> document.getElementById("currentYear").textContent = new Date().getFullYear(); </script>
 </html>
