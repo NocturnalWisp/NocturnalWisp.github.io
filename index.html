@@ -7,11 +7,14 @@
   <meta name="description" content="Portfolio for Thomas Helm">
   <meta name="author" content="Thomas Helm">
   <title>Thomas' Portfolio</title>
-  <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+  <link rel="preload" href="vendor/fontawesome-free/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+  <noscript>
+    <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+  </noscript>
   <link href="css/styles.css" rel="stylesheet">
   <link rel="icon" href="img/ProfileImage.JPG">
-  <script src="js/skill-details.js"></script>
-  <script src="js/site.js"></script>
+  <script src="js/skill-details.js" defer></script>
+  <script src="js/site.js" defer></script>
 </head>
 
 <body id="page-top">
@@ -24,7 +27,7 @@
   <main>
     <section class="hero" aria-labelledby="hero-title">
       <div class="site-shell hero-content">
-        <img class="hero-avatar" src="img/ProfileImage.JPG" alt="Thomas Picture">
+        <img class="hero-avatar" src="img/ProfileImage.JPG" alt="Thomas Picture" width="240" height="240" fetchpriority="high" loading="eager" decoding="async">
         <h1 id="hero-title" class="hero-name">Thomas Helm</h1>
         <p class="hero-subtitle" aria-label="Software, Full Stack, Tools">
           <span class="hero-subtle">Software</span>
@@ -53,7 +56,7 @@
             <li><strong>Impact:</strong> Reduced outgoing bandwidth calls from 10 MB to 125 KB.</li>
           </ul>
           <a class="button button-primary" href="https://playlingolo.com/teachers" target="_blank" rel="noopener noreferrer">
-            <img src="img/LingoloIcon.ico" alt="Lingolo icon" class="button-icon">
+            <img src="img/LingoloIcon.ico" alt="Lingolo icon" class="button-icon" width="24" height="24" loading="lazy" decoding="async">
             Visit Project
           </a>
         </article>
@@ -113,7 +116,7 @@
         <p class="section-intro">Browse production apps and repositories.</p>
         <div class="button-row">
           <a class="button button-ghost" href="https://playlingolo.com/teachers" target="_blank" rel="noopener noreferrer">
-            <img src="img/LingoloIcon.ico" alt="Lingolo icon" class="button-icon">
+            <img src="img/LingoloIcon.ico" alt="Lingolo icon" class="button-icon" width="24" height="24" loading="lazy" decoding="async">
             Lingolo
           </a>
           <a class="button button-ghost" href="https://github.com/NocturnalWisp" target="_blank" rel="noopener noreferrer">
