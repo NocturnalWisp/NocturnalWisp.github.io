@@ -34,7 +34,7 @@ const projectContent = {
     iconImg: "img/LingoloIcon.ico",
     title: "Lingolo",
     summary: "Founded and shipped a real-time competitive French classroom game. Solo, from conception to production.",
-    link: "https://playlingolo.com",
+    link: "https://playlingolo.com/teachers",
     linkLabel: "playlingolo.com",
     items: [
       "Solo full-stack: conceived and shipped through staging/production pipeline, Google Auth, and teacher approval admin system.",
@@ -52,11 +52,11 @@ const projectContent = {
     link: "https://seljax.com",
     linkLabel: "seljax.com",
     items: [
-      "Inherited an unstable DirectX 3D deck designer with active complaints and wide-spread bugs. Shipped a stable release.",
-      "Reorganized the shaping system as the rewrite's foundation while keeping existing work compatible.",
+      "Inherited an unstable DirectX 3D deck designer with wide-spread bugs. Shipped a stable release.",
+      "Wrote a new foundation while keeping existing work compatible.",
       "Cut screenshot load times from 20 seconds to 3 seconds by replacing C# object capture with unsafe pointer blocks in the graphics API pipeline.",
-      "Stepped into senior position after the previous senior left. Owned architecture changes across the product.",
-      "Mentored a junior on graphics APIs, 3D math, and procedural layout systems. Guided them from onboarding to independently designing and shipping the railing system.",
+      "Owned architecture changes across the product.",
+      "Mentored a junior on graphics APIs, 3D math, and procedural layout systems. Guided them from onboarding to independant contributor.",
       "Partnered with IT post-launch on graphics API fixes and generation bugs for test and customer releases."
     ]
   },
@@ -79,7 +79,7 @@ const projectContent = {
     icon: "fas fa-vr-cardboard",
     title: "NAIT 360° Boreal Viewer",
     summary: "Contract project building an immersive 360° training tool for boreal field researchers at NAIT.",
-    link: "https://www.nait.ca/news-stories/newsroom/2021/nait-receives-funding-to-develop-360-degree-immers",
+    link: "https://techlifetoday.nait.ca/2021/360-degree-immersive-training-boreal-reclamation",
     linkLabel: "nait.ca",
     items: [
       "Contract: 360° training app for NAIT field researchers studying boreal reclamation.",
