@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+ <!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -13,7 +13,7 @@
   </noscript>
   <link href="css/styles.css" rel="stylesheet">
   <link rel="icon" href="img/ProfileImage.JPG">
-  <script src="js/skill-details.js" defer></script>
+  <script src="js/project-details.js" defer></script>
   <script src="js/site.js" defer></script>
 </head>
 
@@ -37,9 +37,10 @@
       </div>
     </section>
 
-    <section class="section" id="highlights" aria-labelledby="highlights-title">
+    <section class="section section--highlights" id="highlights" aria-labelledby="highlights-title">
       <div class="site-shell narrow-shell">
-        <h2 id="highlights-title" class="section-title">Highlights</h2>
+        <h2 id="highlights-title" class="section-title section-title--accent section-title--accent-copper">Highlights</h2>
+        <p class="section-lead">Career moments where I took ownership and delivered impact.</p>
 
         <div class="highlights-list">
           <article class="highlight-card">
@@ -73,50 +74,106 @@
       </div>
     </section>
 
-    <section class="section" id="skills" aria-labelledby="skills-title">
-      <div class="site-shell">
-        <h2 id="skills-title" class="section-title">Skills</h2>
+    <section class="section section--projects" id="projects" aria-labelledby="projects-title">
+      <div class="site-shell narrow-shell">
+        <h2 id="projects-title" class="section-title section-title--accent section-title--accent-teal">Projects</h2>
+        <p class="section-lead">Select a project to explore the architecture and outcomes.</p>
 
-        <div class="skills-layout">
-          <div class="skills-grid" role="list" aria-label="Skills list">
-            <button class="skill-option selected" data-skill="frontend" aria-label="Show frontend engineering skill details" aria-pressed="true" type="button">
-              <i class="skill-glyph fab fa-react" aria-hidden="true"></i>
-              <h3>Frontend Engineering</h3>
-              <p>React interfaces with accessible component systems.</p>
+        <div class="projects-layout">
+          <div class="projects-grid" role="list" aria-label="Projects list">
+            <button class="project-option project-option--wide selected" data-project="lingolo" aria-label="Show Lingolo project details" aria-pressed="true" type="button">
+              <span class="project-glyph project-glyph-img" aria-hidden="true"></span>
+              <h3 class="project-title">Lingolo</h3>
+              <p class="project-summary">Real-time competitive French classroom game — built solo, from conception to production.</p>
+              <div class="project-tags">
+                <span class="badge">React</span>
+                <span class="badge">TypeScript</span>
+                <span class="badge">Firebase</span>
+                <span class="badge">Solo Founder</span>
+              </div>
             </button>
-            <button class="skill-option" data-skill="backend" aria-label="Show backend engineering skill details" aria-pressed="false" type="button">
-              <i class="skill-glyph fas fa-server" aria-hidden="true"></i>
-              <h3>Backend &amp; API Design</h3>
-              <p>Cloud functions, API structure, and data flow design.</p>
+
+            <button class="project-option project-option--wide" data-project="seljax" aria-label="Show Seljax project details" aria-pressed="false" type="button">
+              <i class="project-glyph fas fa-drafting-compass" aria-hidden="true"></i>
+              <h3 class="project-title">Seljax — 3D Deck Designer</h3>
+              <p class="project-summary">Led a legacy DirectX deck designer from unstable and customer-complained to fully shipped.</p>
+              <div class="project-tags">
+                <span class="badge">C#</span>
+                <span class="badge">DirectX</span>
+                <span class="badge">Graphics API</span>
+                <span class="badge">Proprietary</span>
+              </div>
             </button>
-            <button class="skill-option" data-skill="firebase" aria-label="Show Firebase skill details" aria-pressed="false" type="button">
-              <i class="skill-glyph fas fa-database" aria-hidden="true"></i>
-              <h3>Firebase Architecture</h3>
-              <p>Auth, data modeling, and production deployment workflows.</p>
+
+            <button class="project-option project-option--square" data-project="drython" aria-label="Show Drython Parser project details" aria-pressed="false" type="button">
+              <i class="project-glyph fas fa-terminal" aria-hidden="true"></i>
+              <h3 class="project-title">Drython Parser</h3>
+              <p class="project-summary">Custom scripting language and parser built in Rust for game engine use.</p>
+              <div class="project-tags">
+                <span class="badge">Rust</span>
+                <span class="badge">Language Design</span>
+              </div>
             </button>
-            <button class="skill-option" data-skill="quality" aria-label="Show quality and reliability skill details" aria-pressed="false" type="button">
-              <i class="skill-glyph fas fa-vial" aria-hidden="true"></i>
-              <h3>Quality &amp; Reliability</h3>
-              <p>Testing, debugging, and release confidence in production.</p>
+
+            <button class="project-option project-option--square" data-project="nait360" aria-label="Show NAIT 360° Boreal Viewer project details" aria-pressed="false" type="button">
+              <i class="project-glyph fas fa-vr-cardboard" aria-hidden="true"></i>
+              <h3 class="project-title">NAIT 360° Boreal Viewer</h3>
+              <p class="project-summary">Immersive 360° training tool for boreal field researchers.</p>
+              <div class="project-tags">
+                <span class="badge">Education</span>
+              </div>
             </button>
-            <button class="skill-option" data-skill="product" aria-label="Show product development skill details" aria-pressed="false" type="button">
-              <i class="skill-glyph fas fa-box" aria-hidden="true"></i>
-              <h3>Product Development</h3>
-              <p>Build loops informed by real user and teacher feedback.</p>
-            </button>
-            <button class="skill-option" data-skill="collaboration" aria-label="Show collaboration skill details" aria-pressed="false" type="button">
-              <i class="skill-glyph fas fa-users" aria-hidden="true"></i>
-              <h3>Team Collaboration</h3>
-              <p>Agile delivery, documentation, and iterative refinement.</p>
+
+            <button class="project-option project-option--square" data-project="floating-inspector" aria-label="Show Floating Inspector project details" aria-pressed="false" type="button">
+              <i class="project-glyph fas fa-toolbox" aria-hidden="true"></i>
+              <h3 class="project-title">Floating Inspector</h3>
+              <p class="project-summary">Detachable Unity Editor inspector window, published on the Asset Store.</p>
+              <div class="project-tags">
+                <span class="badge">Editor Tooling</span>
+              </div>
             </button>
           </div>
 
-          <aside class="skills-panel" aria-live="polite">
-            <div id="skill-details-panel"></div>
+          <aside class="projects-panel" aria-live="polite">
+            <div id="project-details-panel"></div>
           </aside>
         </div>
 
-        <div id="skills-mobile-details" class="skills-mobile-details" aria-live="polite"></div>
+        <div id="projects-mobile-details" class="projects-mobile-details" aria-live="polite"></div>
+      </div>
+    </section>
+
+    <section class="section section--skills" id="skills" aria-labelledby="skills-title">
+      <div class="site-shell narrow-shell">
+        <h2 id="skills-title" class="section-title section-title--accent section-title--accent-teal-deep">Skills</h2>
+        <p class="section-lead">Comfortable owning the full stack, from architecture to UI to deployment.</p>
+
+        <div class="skills-grid">
+          <div class="skill-group">
+            <h3 class="skill-group-label">Languages</h3>
+            <p class="skill-group-items">TypeScript, C#, Rust, Python</p>
+          </div>
+
+          <div class="skill-group">
+            <h3 class="skill-group-label">Frontend</h3>
+            <p class="skill-group-items">React, HTML/CSS</p>
+          </div>
+
+          <div class="skill-group">
+            <h3 class="skill-group-label">Backend &amp; Infra</h3>
+            <p class="skill-group-items">Firebase, Node.js</p>
+          </div>
+
+          <div class="skill-group">
+            <h3 class="skill-group-label">Graphics &amp; Engine</h3>
+            <p class="skill-group-items">DirectX, Unity, ECS, Editor Tooling</p>
+          </div>
+
+          <div class="skill-group">
+            <h3 class="skill-group-label">Tools &amp; Workflow</h3>
+            <p class="skill-group-items">Git, CI/CD, asset pipelines</p>
+          </div>
+        </div>
       </div>
     </section>
 
@@ -137,7 +194,7 @@
       </div>
     </section>
 
-    <section class="section" id="about" aria-labelledby="about-title">
+    <section class="section section--about" id="about" aria-labelledby="about-title">
       <div class="site-shell narrow-shell">
         <div class="about-grid">
           <div>

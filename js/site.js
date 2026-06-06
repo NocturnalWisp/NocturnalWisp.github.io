@@ -1,10 +1,10 @@
-function loadSkillDetail(skill) {
-  const panel = document.getElementById("skill-details-panel");
-  if (!window.skillDetails || !window.skillDetails[skill]) {
-    panel.innerHTML = '<p class="detail-summary">Skill details are currently unavailable.</p>';
+function loadProjectDetail(project) {
+  const panel = document.getElementById("project-details-panel");
+  if (!window.projectDetails || !window.projectDetails[project]) {
+    panel.innerHTML = '<p class="detail-summary">Project details are currently unavailable.</p>';
     return;
   }
-  panel.innerHTML = window.skillDetails[skill];
+  panel.innerHTML = window.projectDetails[project];
 }
 
 function initDetailSelector(options) {
@@ -46,29 +46,29 @@ function initDetailSelector(options) {
   selectCard(firstCard);
 }
 
-function renderAllSkillDetails(skillKeys) {
-  const mobileContainer = document.getElementById("skills-mobile-details");
+function renderAllProjectDetails(projectKeys) {
+  const mobileContainer = document.getElementById("projects-mobile-details");
   if (!mobileContainer) {
     return;
   }
 
-  if (!window.skillDetails) {
+  if (!window.projectDetails) {
     mobileContainer.innerHTML = "";
     return;
   }
 
-  mobileContainer.innerHTML = skillKeys.map(function(skill) {
-    return window.skillDetails[skill] || "";
+  mobileContainer.innerHTML = projectKeys.map(function(project) {
+    return window.projectDetails[project] || "";
   }).join("");
 }
 
 document.addEventListener("DOMContentLoaded", function() {
   initDetailSelector({
-    cardSelector: "#skills .skill-option",
-    dataAttribute: "data-skill",
-    mobileContainerId: "skills-mobile-details",
-    loadDetail: loadSkillDetail,
-    renderAllDetails: renderAllSkillDetails
+    cardSelector: "#projects .project-option",
+    dataAttribute: "data-project",
+    mobileContainerId: "projects-mobile-details",
+    loadDetail: loadProjectDetail,
+    renderAllDetails: renderAllProjectDetails
   });
 });
 
