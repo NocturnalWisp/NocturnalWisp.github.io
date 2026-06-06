@@ -7,6 +7,45 @@ function loadSkillDetail(skill) {
   panel.innerHTML = window.skillDetails[skill];
 }
 
+function initDetailSelector(options) {
+  const cards = document.querySelectorAll(options.cardSelector);
+  const mobileContainer = document.getElementById(options.mobileContainerId);
+
+  if (!cards.length) {
+    return;
+  }
+
+  const keys = Array.prototype.map.call(cards, function(card) {
+    return card.getAttribute(options.dataAttribute);
+  });
+
+  function selectCard(card) {
+    cards.forEach(function(btn) {
+      btn.classList.remove("selected");
+      btn.setAttribute("aria-pressed", "false");
+    });
+    card.classList.add("selected");
+    card.setAttribute("aria-pressed", "true");
+  }
+
+  cards.forEach(function(btn) {
+    btn.addEventListener("click", function() {
+      const key = this.getAttribute(options.dataAttribute);
+      options.loadDetail(key);
+      selectCard(this);
+    });
+  });
+
+  if (mobileContainer && options.renderAllDetails) {
+    options.renderAllDetails(keys);
+  }
+
+  const firstCard = document.querySelector(options.cardSelector + ".selected") || cards[0];
+  const firstKey = firstCard.getAttribute(options.dataAttribute);
+  options.loadDetail(firstKey);
+  selectCard(firstCard);
+}
+
 function renderAllSkillDetails(skillKeys) {
   const mobileContainer = document.getElementById("skills-mobile-details");
   if (!mobileContainer) {
@@ -24,42 +63,13 @@ function renderAllSkillDetails(skillKeys) {
 }
 
 document.addEventListener("DOMContentLoaded", function() {
-  const cards = document.querySelectorAll(".skill-option");
-  const mobileContainer = document.getElementById("skills-mobile-details");
-
-  if (!cards.length) {
-    return;
-  }
-
-  const skillKeys = Array.prototype.map.call(cards, function(card) {
-    return card.getAttribute("data-skill");
+  initDetailSelector({
+    cardSelector: "#skills .skill-option",
+    dataAttribute: "data-skill",
+    mobileContainerId: "skills-mobile-details",
+    loadDetail: loadSkillDetail,
+    renderAllDetails: renderAllSkillDetails
   });
-
-  function selectCard(card) {
-    cards.forEach(function(btn) {
-      btn.classList.remove("selected");
-      btn.setAttribute("aria-pressed", "false");
-    });
-    card.classList.add("selected");
-    card.setAttribute("aria-pressed", "true");
-  }
-
-  cards.forEach(function(btn) {
-    btn.addEventListener("click", function() {
-      const skill = this.getAttribute("data-skill");
-      loadSkillDetail(skill);
-      selectCard(this);
-    });
-  });
-
-  if (mobileContainer) {
-    renderAllSkillDetails(skillKeys);
-  }
-
-  const firstCard = document.querySelector(".skill-option.selected") || cards[0];
-  const firstSkill = firstCard.getAttribute("data-skill");
-  loadSkillDetail(firstSkill);
-  selectCard(firstCard);
 });
 
 function gotoSite(site) {
