@@ -620,32 +620,64 @@ img {
 .skills-grid {
   margin-top: 2rem;
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  grid-template-columns: repeat(5, 1fr);
   gap: 1rem;
+  align-items: stretch;
 }
 
-.skill-group {
+.skill-card {
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
   background: var(--surface-card);
-  border: 1px solid var(--card-border-skills);
+  border: 1px solid var(--card-border);
   border-radius: var(--radius-lg);
-  padding: 1.15rem 1.25rem;
-  box-shadow: none;
+  padding: 1.25rem 1.15rem 1.35rem;
+  box-shadow: var(--shadow-soft);
 }
 
-.skill-group-label {
-  margin: 0 0 0.45rem;
-  font-size: 0.78rem;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.04em;
-  color: var(--teal-700);
+.skill-card-header {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+  padding-bottom: 0.75rem;
+  border-bottom: 1px solid rgba(43, 122, 120, 0.12);
 }
 
-.skill-group-items {
+.skill-icon {
+  flex-shrink: 0;
+  color: var(--teal-500);
+  font-size: 1.35rem;
+  line-height: 1;
+}
+
+.skill-title {
   margin: 0;
-  color: var(--ink-700);
-  font-size: 0.98rem;
-  line-height: 1.45;
+  font-size: 1rem;
+  line-height: 1.25;
+}
+
+.skill-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.42rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.skill-chip {
+  display: block;
+  width: 100%;
+  padding: 0.42rem 0.72rem;
+  border-radius: var(--radius-md);
+  background: rgba(43, 122, 120, 0.07);
+  border: 1px solid rgba(43, 122, 120, 0.14);
+  color: var(--teal-700);
+  font-size: 0.86rem;
+  font-weight: 600;
+  line-height: 1.3;
+  text-align: left;
 }
 
 /* Highlights */
@@ -757,6 +789,10 @@ img {
   .projects-mobile-details {
     display: grid;
   }
+
+  .skills-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
 }
 
 @media (max-width: 767px) {
@@ -806,6 +842,10 @@ img {
   .about-grid {
     grid-template-columns: 1fr;
     gap: 1rem;
+  }
+
+  .skills-grid {
+    grid-template-columns: repeat(2, 1fr);
   }
 
   .body-copy {
