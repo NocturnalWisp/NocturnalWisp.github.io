@@ -33,7 +33,7 @@ const projectContent = {
   lingolo: {
     iconImg: "img/LingoloIcon.ico",
     title: "Lingolo",
-    summary: "Founded and shipped a real-time competitive French classroom game. Solo, from conception to production.",
+    summary: "Real time competitive multiplayer game for French classrooms. Sole developer. Owned architecture, infrastructure, and deployment.",
     link: "https://playlingolo.com/teachers",
     linkLabel: "playlingolo.com",
     items: [
@@ -48,11 +48,10 @@ const projectContent = {
   seljax: {
     icon: "fas fa-drafting-compass",
     title: "Seljax: 3D Deck Designer",
-    summary: "Led a legacy DirectX application from bug-ridden and customer-complained to fully shipped and production-ready.",
+    summary: "Inherited a bug ridden legacy DirectX codebase. Resolved a critical performance bottleneck, owned architecture, and shipped production ready.",
     link: "https://seljax.com",
     linkLabel: "seljax.com",
     items: [
-      "Inherited an unstable DirectX 3D deck designer with wide-spread bugs. Shipped a stable release.",
       "Wrote a new foundation while keeping existing work compatible.",
       "Cut screenshot load times from 20 seconds to 3 seconds by replacing C# object capture with unsafe pointer blocks in the graphics API pipeline.",
       "Owned architecture changes across the product.",
@@ -63,7 +62,7 @@ const projectContent = {
   drython: {
     icon: "fas fa-terminal",
     title: "Drython Parser",
-    summary: "Custom scripting language and parser built in Rust, designed for accessible game engine scripting.",
+    summary: "Custom scripting language and hybrid AST/RPN parser in Rust. Designed for accessible ECS game engine scripting.",
     link: "https://github.com/NocturnalWisp/Drython-Parser",
     linkLabel: "github.com/NocturnalWisp/Drython-Parser",
     items: [
@@ -78,7 +77,7 @@ const projectContent = {
   nait360: {
     icon: "fas fa-vr-cardboard",
     title: "NAIT 360° Boreal Viewer",
-    summary: "Contract project building an immersive 360° training tool for boreal field researchers at NAIT.",
+    summary: "Built a custom JS API to stream large-file 360° video over the web for immersive field researcher training.",
     link: "https://techlifetoday.nait.ca/2021/360-degree-immersive-training-boreal-reclamation",
     linkLabel: "nait.ca",
     items: [
@@ -91,7 +90,7 @@ const projectContent = {
   "floating-inspector": {
     icon: "fas fa-toolbox",
     title: "Floating Inspector",
-    summary: "A Unity Editor utility published on the Asset Store that floats the inspector as a detachable window.",
+    summary: "Published Unity Editor extension. Custom inspector API integration shipped and sold on the Unity Asset Store.",
     link: "https://assetstore.unity.com/packages/tools/utilities/floating-inspector-236873",
     linkLabel: "Unity Asset Store",
     items: [
