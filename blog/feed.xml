@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>TJ Helm — Blog</title>
+    <link>https://thomashelm.ca/blog/</link>
+    <description>Technical writing on systems, tools, and things built.</description>
+    <language>en</language>
+    <atom:link href="https://thomashelm.ca/blog/feed.xml" rel="self" type="application/rss+xml"/><item>
+      <title>Introduction</title>
+      <link>https://thomashelm.ca/blog/posts/introduction/</link>
+      <description>The first post on this blog — a quick note on what to expect here.</description>
+      <pubDate>Tue, 16 Jun 2026 18:00:00 -0600</pubDate>
+      <author>Thomas Helm</author>
+      <guid isPermaLink="true">https://thomashelm.ca/blog/posts/introduction/</guid>
+    </item></channel>
+</rss>

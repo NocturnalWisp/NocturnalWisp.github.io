@@ -1,0 +1,35 @@
+---
+layout: layout.njk
+---
+
+<div class="reading-progress" aria-hidden="true">
+  <div class="reading-progress-bar" id="reading-progress-bar"></div>
+</div>
+
+<div class="blog-shell blog-post-page">
+<a class="blog-back-link" href="{{ page.url | blogPath }}">← Back to Blog</a>
+
+<article>
+  <header class="blog-post-header">
+    <h1 class="blog-post-title">{{ title }}</h1>
+    {% set tags = tags %}
+    {% include "post-tags.njk" %}
+    <p class="blog-post-meta">
+      <time datetime="{{ page.date | postDateIso }}">{{ page.date | postDate }}</time>
+      <span class="blog-post-meta-sep" aria-hidden="true">·</span>
+      <span>{{ content | readingTime }}</span>
+    </p>
+  </header>
+  <div class="blog-post-body">
+    {{ content | safe }}
+  </div>
+</article>
+</div>
+
+<link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-rust.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-typescript.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-javascript.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-csharp.min.js"></script>
+<script src="{{ page.url | blogPath }}js/reading-progress.js"></script>

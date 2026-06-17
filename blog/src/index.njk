@@ -1,0 +1,36 @@
+---
+layout: layout.njk
+title: Blog
+permalink: /
+---
+<section class="blog-masthead" aria-labelledby="blog-title">
+  <div class="blog-shell blog-masthead-inner">
+    <div class="blog-masthead-text">
+      <h1 id="blog-title" class="blog-index-title">Blog</h1>
+      <p class="blog-index-lead">Technical writing on systems, tools, and things built.</p>
+    </div>
+    <a class="blog-rss-link" href="feed.xml" aria-label="RSS feed">
+      <i class="fas fa-rss" aria-hidden="true"></i>
+    </a>
+  </div>
+</section>
+
+<section class="blog-index-content" aria-label="Posts">
+  <div class="blog-shell">
+    <ul class="blog-post-list">
+      {%- for post in collections.posts -%}
+      <li>
+        <article class="blog-post-card">
+          <a href="posts/{{ post.fileSlug }}/">
+            <h2 class="blog-post-card-title">{{ post.data.title }}</h2>
+            <time class="blog-post-card-date" datetime="{{ post.date | postDateIso }}">{{ post.date | postDate }}</time>
+            <p class="blog-post-card-excerpt">{{ post.data.excerpt }}</p>
+          </a>
+          {% set tags = post.data.tags %}
+          {% include "post-tags.njk" %}
+        </article>
+      </li>
+      {%- endfor -%}
+    </ul>
+  </div>
+</section>

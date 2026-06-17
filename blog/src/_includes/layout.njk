@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+  <meta charset="utf-8">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <meta name="description" content="{% if excerpt %}{{ excerpt }}{% else %}Technical writing by Thomas Helm{% endif %}">
+
+  <meta name="author" content="Thomas Helm">
+
+  <title>{% if title %}{{ title }} — Thomas Helm{% else %}Blog — Thomas Helm{% endif %}</title>
+
+  <link rel="preload" href="{{ page.url | rootPath }}vendor/fontawesome-free/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+
+  <noscript>
+
+    <link href="{{ page.url | rootPath }}vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+
+  </noscript>
+
+  <link href="{{ page.url | rootPath }}css/styles.css" rel="stylesheet">
+
+  <link href="{{ page.url | blogPath }}css/blog.css" rel="stylesheet">
+
+  <link rel="icon" href="{{ page.url | rootPath }}img/ProfileImage.JPG">
+
+  {%- if "/posts/" in page.url -%}
+  <link rel="alternate" type="application/rss+xml" title="{{ metadata.siteTitle }}" href="{{ page.url | blogPath }}feed.xml">
+  <meta property="og:image" content="{{ metadata.blogUrl }}/og-images/{{ page.fileSlug }}.svg">
+  <meta property="og:title" content="{{ title }}">
+  <meta property="og:type" content="article">
+  {%- endif -%}
+
+</head>
+
+<body class="blog-page">
+
+  <header class="site-header blog-header" id="mainNav">
+
+    <div class="site-shell blog-header-inner">
+
+      <a class="site-title blog-home-link" href="{{ page.url | rootPath }}index.html">Thomas Helm</a>
+
+      <nav class="blog-nav" aria-label="Site">
+        <a class="blog-nav-link" href="{{ page.url | rootPath }}now/">Now</a>
+        <a class="blog-nav-link" href="{{ page.url | rootPath }}index.html">Portfolio</a>
+      </nav>
+
+    </div>
+
+  </header>
+
+
+
+  <main class="blog-main">
+
+    {{ content | safe }}
+
+  </main>
+
+
+
+  <footer class="site-footer" aria-labelledby="contact-title">
+
+    <div class="site-shell center-content">
+
+      <h2 id="contact-title" class="footer-heading">Contact</h2>
+
+      <div class="social-row">
+
+        <a class="button button-social" href="mailto:helmthomas2000@gmail.com" target="_blank" rel="noopener noreferrer" aria-label="Email">
+
+          <i class="far fa-envelope" aria-hidden="true"></i>
+
+        </a>
+
+        <a class="button button-social" href="https://github.com/NocturnalWisp" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
+
+          <i class="fab fa-github" aria-hidden="true"></i>
+
+        </a>
+
+        <a class="button button-social" href="https://www.linkedin.com/in/thomas-helm-dev/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+
+          <i class="fab fa-linkedin-in" aria-hidden="true"></i>
+
+        </a>
+
+      </div>
+
+      <small>© Thomas Helm <span id="currentYear"></span></small>
+
+    </div>
+
+  </footer>
+
+  <script>document.getElementById("currentYear").textContent = new Date().getFullYear();</script>
+
+</body>
+
+</html>
+

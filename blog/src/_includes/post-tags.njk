@@ -1,0 +1,7 @@
+{%- if tags and tags.length -%}
+<ul class="blog-tag-list" aria-label="Tags">
+  {%- for tag in tags -%}
+  <li><a class="blog-tag" href="{{ tag | tagLink(page.url) }}">{{ tag }}</a></li>
+  {%- endfor -%}
+</ul>
+{%- endif -%}

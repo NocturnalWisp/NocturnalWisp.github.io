@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" role="img" aria-label="Introduction">
+  <rect width="1200" height="630" fill="#e3ddd2"/>
+  <rect x="0" y="0" width="1200" height="6" fill="#2b7a78"/>
+  <text x="80" y="280" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="56" font-weight="700" fill="#1d1a17"><tspan x="80" dy="0">Introduction</tspan></text>
+  <text x="80" y="580" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="28" font-weight="600" fill="#2b7a78" letter-spacing="0.04em">thomashelm.ca</text>
+</svg>

@@ -1,0 +1,24 @@
+---
+permalink: feed.xml
+eleventyExcludeFromCollections: true
+---
+<?xml version="1.0" encoding="utf-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>{{ metadata.siteTitle }}</title>
+    <link>{{ metadata.blogUrl }}/</link>
+    <description>Technical writing on systems, tools, and things built.</description>
+    <language>en</language>
+    <atom:link href="{{ metadata.blogUrl }}/feed.xml" rel="self" type="application/rss+xml"/>
+    {%- for post in collections.posts -%}
+    <item>
+      <title>{{ post.data.title }}</title>
+      <link>{{ metadata.blogUrl }}/posts/{{ post.fileSlug }}/</link>
+      <description>{{ post.data.excerpt }}</description>
+      <pubDate>{{ post.date | dateToRfc822 }}</pubDate>
+      <author>{{ metadata.author }}</author>
+      <guid isPermaLink="true">{{ metadata.blogUrl }}/posts/{{ post.fileSlug }}/</guid>
+    </item>
+    {%- endfor -%}
+  </channel>
+</rss>

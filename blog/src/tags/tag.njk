@@ -1,0 +1,38 @@
+---
+pagination:
+  data: collections.tagList
+  size: 1
+  alias: tag
+permalink: "tags/{{ tag }}/index.html"
+layout: layout.njk
+eleventyComputed:
+  title: "{{ tag }}"
+---
+<section class="blog-masthead" aria-labelledby="tag-title">
+  <div class="blog-shell">
+    <h1 id="tag-title" class="blog-index-title">Tag: {{ tag }}</h1>
+    <p class="blog-index-lead"><a class="blog-back-link" href="{{ page.url | blogPath }}">← All posts</a></p>
+  </div>
+</section>
+
+<section class="blog-index-content" aria-label="Posts tagged {{ tag }}">
+  <div class="blog-shell">
+    <ul class="blog-post-list">
+      {%- for post in collections.posts -%}
+      {%- if tag in post.data.tags -%}
+      <li>
+        <article class="blog-post-card">
+          <a href="{{ page.url | blogPath }}posts/{{ post.fileSlug }}/">
+            <h2 class="blog-post-card-title">{{ post.data.title }}</h2>
+            <time class="blog-post-card-date" datetime="{{ post.date | postDateIso }}">{{ post.date | postDate }}</time>
+            <p class="blog-post-card-excerpt">{{ post.data.excerpt }}</p>
+          </a>
+          {% set tags = post.data.tags %}
+          {% include "post-tags.njk" %}
+        </article>
+      </li>
+      {%- endif -%}
+      {%- endfor -%}
+    </ul>
+  </div>
+</section>

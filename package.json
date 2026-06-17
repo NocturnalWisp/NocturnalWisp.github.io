@@ -1,0 +1,14 @@
+{
+  "name": "nocturnalwisp-portfolio",
+  "private": true,
+  "scripts": {
+    "build:blog": "eleventy",
+    "dev:blog": "eleventy --serve --watch",
+    "dev": "serve . -l 3000"
+  },
+  "devDependencies": {
+    "@11ty/eleventy": "^3.0.0",
+    "@11ty/eleventy-plugin-rss": "^3.0.0",
+    "serve": "^14.2.4"
+  }
+}
