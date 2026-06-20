@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+  <meta charset="utf-8">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <meta name="description" content="An introduction to my C++ simulation engine design for emergent NPC behaviour and physical material based gameplay.">
+
+  <meta name="author" content="Thomas Helm">
+
+  <title>Better ECS Systems for Emergent Design — Thomas Helm</title>
+
+  <link rel="preload" href="../../../vendor/fontawesome-free/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+
+  <noscript>
+
+    <link href="../../../vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+
+  </noscript>
+
+  <link href="../../../css/styles.css" rel="stylesheet">
+
+  <link href="../../css/blog.css" rel="stylesheet">
+
+  <link rel="icon" href="../../../img/ProfileImage.JPG"><link rel="alternate" type="application/rss+xml" title="TJ Helm — Blog" href="../../feed.xml">
+  <meta property="og:image" content="https://thomashelm.ca/blog/og-images/better-ecs-for-emergent-design.svg">
+  <meta property="og:title" content="Better ECS Systems for Emergent Design">
+  <meta property="og:type" content="article"></head>
+
+<body class="blog-page">
+
+  <header class="site-header blog-header" id="mainNav">
+
+    <div class="site-shell blog-header-inner">
+
+      <a class="site-title blog-home-link" href="../../../index.html">Thomas Helm</a>
+
+      <nav class="blog-nav" aria-label="Site">
+        <a class="blog-nav-link" href="../../../now/">Now</a>
+        <a class="blog-nav-link" href="../../../index.html">Portfolio</a>
+      </nav>
+
+    </div>
+
+  </header>
+
+
+
+  <main class="blog-main">
+
+    
+<div class="reading-progress" aria-hidden="true">
+  <div class="reading-progress-bar" id="reading-progress-bar"></div>
+</div>
+
+<div class="blog-shell blog-post-page">
+<a class="blog-back-link" href="../../">← Back to Blog</a>
+
+<article>
+  <header class="blog-post-header">
+    <h1 class="blog-post-title">Better ECS Systems for Emergent Design</h1>
+    
+    <ul class="blog-tag-list" aria-label="Tags"><li><a class="blog-tag" href="../../tags/Simulation Engine/">Simulation Engine</a></li><li><a class="blog-tag" href="../../tags/C++/">C++</a></li><li><a class="blog-tag" href="../../tags/ECS/">ECS</a></li><li><a class="blog-tag" href="../../tags/Architecture/">Architecture</a></li></ul>
+    <p class="blog-post-meta">
+      <time datetime="2026-06-20">June 20, 2026</time>
+      <span class="blog-post-meta-sep" aria-hidden="true">·</span>
+      <span>6 min read</span>
+    </p>
+  </header>
+  <div class="blog-post-body">
+    <p>The overall intention of the simulation engine is to enable emergent behaviour from simple building blocks. ECS offers to simplify this goal in the most directly accessible way.</p>
+<p>The following paragraphs explain some of the important layers of the architecture. Tldr; Components define the core properties of the world. Systems define how those properties interact. Systems are constrained by enforced compile-time rules to prevent mis-use.</p>
+<p>With components I can define those simple building blocks with efficient memory allocation. The simulation at its core will be defined by what our physics is defined by. There is a limit, of course. I will not explain how deep these components will describe my world yet, but it's enough to say that they will define the nature of the world and suffice for emergent interaction.</p>
+<p>The second part of this architecture are the systems. While the components remain small and define the building blocks, I determined that the systems should remain small and only define a common interaction. While I have not gone for pure ECS in the most typical sense, I am approaching a similar concept by maintaining thin systems. This will make them easier to debug and manage, while offering a robust solution at scale. The systems will also be prevented from communicating directly with one another. Soon I will discuss the structure of these systems, but for now imagine them as singular functions defining how one component interacts with another (or multiple) in the world.</p>
+<p>The last part of the architecture defines a layer of development and control preventing deviation from the system specifications. This part is especially important for maintaining the systems as they grow. This involves compile time constraints in c++ as well as the occasional runtime constraint when the compiler cannot efficiently handle it. I will reserve the bulk of these systems for a potential future post.</p>
+<p>Lets go over some more specific examples of the architecture.</p>
+<pre><code class="language-cpp">#pragma once
+
+#include &lt;entt/entt.hpp&gt;
+
+struct AffectEvent {
+    float arousal;
+    float valence;
+    float timestamp; // Time when the event occurred, in seconds since the start of the game.
+    float salience; // 0 to 1, how important this event is to the character's overall affinity state.
+    std::vector&lt;entt::entity&gt; entity_ids; // IDs of entities involved in the event, if any.
+};
+</code></pre>
+<p>This snippet represents the overall emotional state of an NPC when an event occurs in the world. This could be a noise, salient visual cue, or a direct change based on an interaction with another NPC. It is a good example to showcase the limits of a component. As represented, the component required multiple fields to describe what it is. The concepts of Arousal/Activation and Valence in Affect to describe a persons entire emotional state can be found by Lisa Feldman Barrett in her works: <a href="https://pubmed.ncbi.nlm.nih.gov/20552040/" target="_blank" rel="noopener noreferrer">Affect as a Psychological Primitive - PubMed</a>.</p>
+<p>The core root of designing these components lies in the nature of systems. If I have too many fields, systems will be required to handle more logic than necessary. If I split the component into single field components, the number of components required to be included by a system increases drastically introducing complexity. The core constraint is that components must include the least amount of fields, except when all systems would need to operate continuously on the same collection of fields. The AffectEvent component represents an efficient example of this since the systems that utilize it will need to access both arousal and valence to operate appropriately on it. If we split those fields, it would require gathering both at the same time to either set, or access them like when testing the salience of a memory.</p>
+<p>Keeping components efficient is the core of the systems architecture. The following is an example of a system and the bounds it is constrained by.</p>
+<pre><code class="language-cpp">#include &quot;integrity_system.hpp&quot;
+
+#include &quot;components/properties/integrity_component.h&quot;
+
+System IntegritySystem = makeSystem&lt;
+    View&lt;Integrity&gt;,
+    DestroysEntities&gt;(
+    [](auto view, float deltaTime)
+    {
+        // Collect entities with zero integrity
+        std::vector&lt;entt::entity&gt; entitiesToDestroy;
+
+        for (auto entity : view) {
+            const auto&amp; integrity = view.read&lt;Integrity&gt;(entity);
+            if (integrity.value &lt;= 0.0f) {
+                entitiesToDestroy.push_back(entity);
+            }
+        }
+
+        // Destroy collected entities
+        for (auto entity : entitiesToDestroy) {
+            view.destroy(entity);
+        }
+    }
+);
+
+</code></pre>
+<p>The IntegritySystem is an intentionally small system designed to destroy an entity when its integrity collapses. I will mention that this system could be entirely broken down in a more in-depth structure. A door is not defined by a single integrity, but by the fibers of itself. As mentioned earlier, there is a depth-limit. I will avoid creating the entirety of the physical world in a simulation, however I want to represent a world with a fidelity high enough to suspend disbelief. The integrity system could become something greater. Regardless; this system defines only, and exactly, what it needs to do based on one source of logic.</p>
+<p>I am defining the system using a generic function <code>makeSystem&lt;&gt;</code>. This logic allows me to constrain the system to the components that it defines, but also provides me with a traceable map of the architecture. I may make a post in the future to showcase how I use this to build a visual representation of the project. For now, see <a href="#figure-1">Figure 1</a> for an example of the heat component and its use in each system completely generated from the generic arguments of <code>makeSystem&lt;&gt;</code>.</p>
+<figure id="figure-1" class="blog-post-figure-wrap">
+  <img src="./heat-system-graph.png" alt="Heat component system graph generated from makeSystem generic arguments.">
+  <figcaption>Figure 1: Heat component system graph generated from makeSystem generic arguments.</figcaption>
+</figure>
+<p>As mentioned, the last layer describes what a system can and cannot do. The following code describes the specification of a system and what it is capable of doing:</p>
+<pre><code class="language-cpp">enum class AccessMode {
+    Read,
+    Write,
+    State,
+    Remove,
+    Emplace,
+    DestroysEntities,
+    Exclude
+};
+</code></pre>
+<p>Many of these are enforced characteristics. A system cannot call <code>view.read&lt;Integrity&gt;</code> if it does not include <code>View&lt;Integrity&gt;</code> as one of the generic arguments. The view object allows for these direct constraints based on the generics present. Not only does this help constrain, but it helps display a graph of what exactly a system touches as seen in <a href="#figure-1">Figure 1</a>.</p>
+<p>Based on the infrastructure displayed by using components and systems, I have the capabilities of building physical world like properties within a constrained but powerful environment. Modeling NPC behaviour and physical materials is the start. Resembling these with procedural models, fabricating stories based on NPC knowledge base, and creating a lived-in world are all possible stemming from a simple ECS structure. I look forward to sharing each of these topics through blog posts in the future!</p>
+
+  </div>
+  <nav class="blog-post-footer-nav" aria-label="Post navigation">
+    <a class="blog-back-link" href="../../">← Back to Blog</a>
+    <a class="blog-back-link blog-back-to-top" href="#">Back to top ↑</a>
+  </nav>
+</article>
+</div>
+
+<div class="blog-lightbox" id="blog-lightbox" aria-hidden="true">
+  <button type="button" class="blog-lightbox-close" aria-label="Close enlarged image">&times;</button>
+  <div class="blog-lightbox-backdrop"></div>
+  <figure class="blog-lightbox-content">
+    <img class="blog-lightbox-image" alt="">
+    <figcaption class="blog-lightbox-caption" hidden></figcaption>
+  </figure>
+</div>
+
+<link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-rust.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-typescript.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-javascript.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-csharp.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-clike.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-c.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-cpp.min.js"></script>
+<script src="../../js/reading-progress.js"></script>
+<script src="../../js/figure-lightbox.js"></script>
+
+
+  </main>
+
+
+
+  <footer class="site-footer" aria-labelledby="contact-title">
+
+    <div class="site-shell center-content">
+
+      <h2 id="contact-title" class="footer-heading">Contact</h2>
+
+      <div class="social-row">
+
+        <a class="button button-social" href="mailto:helmthomas2000@gmail.com" target="_blank" rel="noopener noreferrer" aria-label="Email">
+
+          <i class="far fa-envelope" aria-hidden="true"></i>
+
+        </a>
+
+        <a class="button button-social" href="https://github.com/NocturnalWisp" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
+
+          <i class="fab fa-github" aria-hidden="true"></i>
+
+        </a>
+
+        <a class="button button-social" href="https://www.linkedin.com/in/thomas-helm-dev/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+
+          <i class="fab fa-linkedin-in" aria-hidden="true"></i>
+
+        </a>
+
+      </div>
+
+      <small>© Thomas Helm <span id="currentYear"></span></small>
+
+    </div>
+
+  </footer>
+
+  <script>document.getElementById("currentYear").textContent = new Date().getFullYear();</script>
+
+</body>
+
+</html>
+

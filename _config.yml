@@ -1,0 +1,7 @@
+# Prevent Jekyll from processing Eleventy source templates if Jekyll runs.
+exclude:
+  - blog/src
+  - node_modules
+  - package.json
+  - package-lock.json
+  - .eleventy.js

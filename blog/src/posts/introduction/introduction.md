@@ -4,13 +4,13 @@ title: "Introduction"
 
 date: 2026-06-17
 
-excerpt: "The first post on this blog — a quick note on what to expect here."
+excerpt: "The first post on this blog; a quick note on what to expect here."
 
-tags: ["technical", "builder-log", "meta"]
+tags: ["Meta"]
 
 ---
 
-This blog is a place for me to talk about my technical and leadership experiences. I will communicate in depth on problems I encounter, and the solutions I discover.
+This blog is a place for me to talk about my technical and leadership experiences. I will communicate in depth on problems I encounter, and in the solutions I discover.
 
 There are several languages I have had the opportunity of working with. (C++, C#, Typescript, JS, Python, Lua, Rust, Go, Custom) I will highlight my use of them as tools as well as the APIs, SDKs, and toolkits I engage with. (Entt ECS, .NET, Unity, DirectX, Unreal, Cargo, Firebase, React, Bash)
 

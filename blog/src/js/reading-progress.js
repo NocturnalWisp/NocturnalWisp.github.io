@@ -22,4 +22,12 @@
   window.addEventListener("scroll", update, { passive: true });
   window.addEventListener("resize", update, { passive: true });
   update();
+
+  var backToTop = document.querySelector(".blog-back-to-top");
+  if (backToTop) {
+    backToTop.addEventListener("click", function (event) {
+      event.preventDefault();
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    });
+  }
 })();

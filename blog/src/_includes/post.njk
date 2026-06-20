@@ -21,9 +21,22 @@ layout: layout.njk
     </p>
   </header>
   <div class="blog-post-body">
-    {{ content | safe }}
+    {{ content | externalLinks | safe }}
   </div>
+  <nav class="blog-post-footer-nav" aria-label="Post navigation">
+    <a class="blog-back-link" href="{{ page.url | blogPath }}">← Back to Blog</a>
+    <a class="blog-back-link blog-back-to-top" href="#">Back to top ↑</a>
+  </nav>
 </article>
+</div>
+
+<div class="blog-lightbox" id="blog-lightbox" aria-hidden="true">
+  <button type="button" class="blog-lightbox-close" aria-label="Close enlarged image">&times;</button>
+  <div class="blog-lightbox-backdrop"></div>
+  <figure class="blog-lightbox-content">
+    <img class="blog-lightbox-image" alt="">
+    <figcaption class="blog-lightbox-caption" hidden></figcaption>
+  </figure>
 </div>
 
 <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css" rel="stylesheet">
@@ -32,4 +45,8 @@ layout: layout.njk
 <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-typescript.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-javascript.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-csharp.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-clike.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-c.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-cpp.min.js"></script>
 <script src="{{ page.url | blogPath }}js/reading-progress.js"></script>
+<script src="{{ page.url | blogPath }}js/figure-lightbox.js"></script>
